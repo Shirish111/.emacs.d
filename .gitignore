@@ -8,3 +8,9 @@ auto-save-list
 tramp
 .\#*
 elpa
+smex-items
+snippets
+recentf
+ido.*
+ac-comphist*
+.mc-lists.el
