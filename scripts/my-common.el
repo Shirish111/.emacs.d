@@ -3,7 +3,14 @@
 ;; The `my-common' package is used to load the common utilities
 
 ;;; Code
-;;; Yes or No
+;; Diminish and Delight
+(use-package diminish
+  :ensure t)
+(use-package delight
+  :ensure t)
+
+
+;; Yes or No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; show paren mode
@@ -12,26 +19,34 @@
 ;; pending delete
 (pending-delete-mode 1)
 
+;; Display time
+(display-time-mode t)
+
 ;; Rainbow Delimiters
-(use-package rainbow-delimiters)
+(use-package rainbow-delimiters
+  :delight)
 
 ;; Expand Region
 (use-package expand-region
   :ensure t
+  :delight
   :bind(("C-;" . er/expand-region)))
 
 ;; Multiple Cursors
 (use-package multiple-cursors
+  :delight
   :ensure t)
 
 ;;Which key
 (use-package which-key
   :ensure t
   :demand t
+  :delight
   :config(which-key-mode 1))
 
 ;; Smartparens
 (use-package smartparens
+  :delight smartparens-mode
   :ensure t
   :demand t
   :config (progn
@@ -39,7 +54,6 @@
 	    (smartparens-global-mode)
 	    (smartparens-strict-mode t)
 	    (setq-default sp-escape-quotes-after-insert nil))
-  :delight t
   :bind (("C-c r" . sp-rewrap-sexp)))
 
 ;; Autocomplete
@@ -56,6 +70,7 @@
 
 ;; Avy
 (use-package avy
+  :delight
   :ensure t
   :demand t
   :bind (("C-l" . 'avy-goto-char))
@@ -65,10 +80,11 @@
 (use-package move-text
   :demand t
   :ensure t
+  :delight
   :config (move-text-default-bindings))
 
 ;; Company
-(use-package company               
+(use-package company
   :ensure t
   :defer t
   :init (global-company-mode)
@@ -86,6 +102,7 @@
 ;; Company Quickhelp
 (use-package company-quickhelp          ; Documentation popups for Company
   :ensure t
+  :delight
   :defer t
   :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode))
 
@@ -93,6 +110,7 @@
 (use-package yasnippet
   :ensure t
   :diminish yas-minor-mode
+  :delight
   :config (yas-global-mode 1))
 
 ;; Yasnippet snippets
@@ -101,6 +119,7 @@
 
 ;; Flycheck
 (use-package flycheck
+  :delight
   :ensure t
   :commands flycheck-mode
   :init
@@ -109,6 +128,7 @@
 
 ;; Clang-format
 (use-package clang-format
+  :delight
   :ensure t
   :init
   (add-hook 'c++-mode-hook 'flycheck-mode)
@@ -122,11 +142,13 @@
 ;; Magit
 (use-package magit
   :ensure t
+  :delight
   :bind (("C-x g" . magit-status)))
 
 ;; Dashboard
 (use-package dashboard
   :ensure t
+  :delight dashboard-mode
   :config
   (dashboard-setup-startup-hook)
   (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")

@@ -19,17 +19,9 @@
 ;; Linum Mode
 (global-linum-mode t)
 
-;; ;; Cyberpunk theme
-;; (use-package cyberpunk-theme
-;;   :ensure t
-;;   :config (load-theme 'cyberpunk t))
-;; ;; Zenburn theme
-;; (use-package zenburn-theme
-;;   :ensure t
-;;   :config (load-theme 'zenburn t))
-
 ;; Spacemacs theme
 (use-package spacemacs-theme
+  :delight 
   :ensure t
   :defer t
   :init (load-theme 'spacemacs-dark t))

@@ -7,6 +7,7 @@
 (use-package my-common)
 (use-package my-custom)
 (use-package my-ivy-config)
+(use-package my-org)
 (use-package my-hydra)
 
 (provide 'my-config)

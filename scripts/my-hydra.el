@@ -6,6 +6,7 @@
 ;; Hydra
 (use-package hydra
   :ensure t
+  :delight
   )
 
 (defhydra hydra-multiple-cursors (global-map "ESC m")
