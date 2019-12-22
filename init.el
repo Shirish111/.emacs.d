@@ -25,7 +25,7 @@
  '(clang-format-style "Google")
  '(package-selected-packages
    (quote
-    (magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
+    (dashboard magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
