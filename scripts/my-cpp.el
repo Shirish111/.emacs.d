@@ -15,6 +15,12 @@
   (setq clang-format-style "Google")
   )
 
+(use-package google-c-style
+  :defer t
+  :ensure t
+  :commands
+  (google-set-c-style))
+
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

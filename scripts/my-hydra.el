@@ -9,6 +9,7 @@
   :delight
   )
 
+;; Multiple Cursors
 (defhydra hydra-multiple-cursors (global-map "ESC m")
   "
  Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
@@ -33,6 +34,43 @@
   ("<down-mouse-1>" ignore)
   ("<drag-mouse-1>" ignore)
   ("q" nil))
+
+;; Java
+(defhydra hydra-meghanada (:hint nil :exit t)
+"
+^Edit^                           ^Tast or Task^
+^^^^^^-------------------------------------------------------
+_f_: meghanada-compile-file      _m_: meghanada-restart
+_c_: meghanada-compile-project   _t_: meghanada-run-task
+_o_: meghanada-optimize-import   _j_: meghanada-run-junit-test-case
+_s_: meghanada-switch-test-case  _J_: meghanada-run-junit-class
+_v_: meghanada-local-variable    _R_: meghanada-run-junit-recent
+_i_: meghanada-import-all        _r_: meghanada-reference
+_g_: magit-status                _T_: meghanada-typeinfo
+_l_: helm-ls-git-ls
+_q_: exit
+"
+  ("f" meghanada-compile-file)
+  ("m" meghanada-restart)
+
+  ("c" meghanada-compile-project)
+  ("o" meghanada-optimize-import)
+  ("s" meghanada-switch-test-case)
+  ("v" meghanada-local-variable)
+  ("i" meghanada-import-all)
+
+  ("g" magit-status)
+  ("l" helm-ls-git-ls)
+
+  ("t" meghanada-run-task)
+  ("T" meghanada-typeinfo)
+  ("j" meghanada-run-junit-test-case)
+  ("J" meghanada-run-junit-class)
+  ("R" meghanada-run-junit-recent)
+  ("r" meghanada-reference)
+
+  ("q" exit)
+  ("z" nil "leave"))
 
 (provide 'my-hydra)
 
