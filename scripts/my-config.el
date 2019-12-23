@@ -12,6 +12,7 @@
 (use-package my-ruby)
 (use-package my-python)
 (use-package my-java)
+(use-package my-js)
 (use-package my-hydra)
 
 (provide 'my-config)

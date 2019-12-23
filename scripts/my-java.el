@@ -11,6 +11,7 @@
 ;; Meghanada
 ;; `NOTE': Run meghanada-update-server on installation
 (use-package meghanada
+  :ensure t
   :defer t
   :init
   (add-hook 'java-mode-hook
