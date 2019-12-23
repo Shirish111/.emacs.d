@@ -8,6 +8,8 @@
 (use-package my-custom)
 (use-package my-ivy-config)
 (use-package my-org)
+(use-package my-cpp)
+(use-package my-ruby)
 (use-package my-hydra)
 
 (provide 'my-config)

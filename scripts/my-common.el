@@ -56,18 +56,6 @@
 	    (setq-default sp-escape-quotes-after-insert nil))
   :bind (("C-c r" . sp-rewrap-sexp)))
 
-;; Autocomplete
-;(use-package auto-complete
-;  :ensure t
-;  :demand t
-;  :config (progn
-;	    (ac-config-default)
-;	    (global-auto-complete-mode t)
-;	    (define-key ac-mode-map (kbd "TAB") nil)
-;	    (define-key ac-completing-map (kbd "TAB") nil)
-;	    (define-key ac-completing-map [tab] nil)
-;	    (define-key ac-completing-map (kbd ".") 'ac-expand)))
-
 ;; Avy
 (use-package avy
   :delight
@@ -96,7 +84,8 @@
     (setq company-tooltip-align-annotations t
           ;; Easy navigation to candidates with M-<n>
           company-show-numbers t)
-    (setq company-dabbrev-downcase nil))
+    (setq company-dabbrev-downcase nil)
+    (push 'company-robe company-backends))
   :diminish company-mode)
 
 ;; Company Quickhelp
@@ -124,20 +113,8 @@
   :commands flycheck-mode
   :init
   (add-hook 'c++-mode-hook 'flycheck-mode)
-  (add-hook 'c-mode-hook 'flycheck-mode))
-
-;; Clang-format
-(use-package clang-format
-  :delight
-  :ensure t
-  :init
-  (add-hook 'c++-mode-hook 'flycheck-mode)
   (add-hook 'c-mode-hook 'flycheck-mode)
-  ;(setq clang-format-executable "/usr/local/clang-9.0.0/bin/clang-format")
-  :config
-  (add-hook 'before-save-hook '(lambda () (when (or (eq major-mode 'c++-mode) (eq major-mode 'c-mode)) (clang-format-buffer))))
-  (setq clang-format-style "Google")
-  )
+  (add-hook 'ruby-mode-hook 'flycheck-mode))
 
 ;; Magit
 (use-package magit
@@ -190,6 +167,7 @@
 ;; Projectile
 (use-package projectile
   :ensure t
+  :delight
   :init
   (setq projectile-completion-system 'ivy)
   :config
