@@ -5,6 +5,7 @@
 
 ;; Ivy Mode
 (use-package ivy
+  :delight ivy-mode
   :ensure t
   :demand t
   :config (progn
@@ -22,6 +23,7 @@
 
 ;; Counsel
 (use-package counsel
+  :delight
   :ensure t
   :demand t
   :bind (("C-s" . swiper)

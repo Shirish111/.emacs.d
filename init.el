@@ -4,6 +4,8 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("org" . "https://orgmode.org/elpa/") t)
 (package-initialize)
 
 ;;; Use Package
@@ -23,9 +25,12 @@
  ;; If there is more than one, they won't work right.
  '(clang-format-fallback-style "llvm")
  '(clang-format-style "Google")
+ '(custom-safe-themes
+   (quote
+    ("3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(package-selected-packages
    (quote
-    (dashboard magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
+    (rubocopfmt treemacs-evil treemacs org-bullets org-mode org-babel-eval-in-repl org-contrib-mode org-plus-contrib delight dashboard magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
