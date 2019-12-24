@@ -10,6 +10,9 @@
 (use-package my-org)
 (use-package my-cpp)
 (use-package my-ruby)
+(use-package my-python)
+(use-package my-java)
+(use-package my-js)
 (use-package my-hydra)
 
 (provide 'my-config)

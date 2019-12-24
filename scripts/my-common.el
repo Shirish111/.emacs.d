@@ -9,7 +9,6 @@
 (use-package delight
   :ensure t)
 
-
 ;; Yes or No
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -257,6 +256,10 @@
 
 (use-package treemacs-magit
   :after treemacs magit
+  :ensure t)
+
+(use-package json-mode
+  :mode "\\.json\\'"
   :ensure t)
 
 (provide 'my-common)
