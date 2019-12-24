@@ -14,9 +14,6 @@
 	    (setq ivy-count-format "(%d/%d) "))
   :bind (("C-c C-r" . ivy-resume)))
 
-
-
-
 (setq ivy-re-builders-alist
       '((swiper . ivy--regex-plus)
         (t      . ivy--regex-fuzzy)))
@@ -34,7 +31,7 @@
 	 ("<f1> l" . counsel-find-library)
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
-	 ("C-c c" . counsel-compile)
+	 ;("C-c c" . counsel-compile)
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
 	 ("C-c k" . counsel-ag)

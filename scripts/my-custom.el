@@ -29,6 +29,23 @@
 ;; Copy Whole line
 (global-set-key (kbd "M-z") '(lambda () (interactive) (kill-ring-save (line-beginning-position) (line-end-position))))
 
+;; Make Directory
+(defun my-make-dir ()
+  "My Make directory"
+  (interactive)
+  (let* ((yank_content (current-kill 0))
+         (dirname (s-upper-camel-case yank_content))
+         (filepath (concat "../" dirname "/a.cpp")))
+    (find-file filepath)
+    (insert (concat "// " yank_content))
+    )
+  )
+
+(global-set-key (kbd "C-c m") 'my-make-dir)
+
+;; Interactive Shell
+(setq shell-command-switch "-ic")
+
 (provide 'my-custom)
 
 ;;; my-custom package ends here
