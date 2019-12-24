@@ -14,3 +14,15 @@ recentf
 ido.*
 ac-comphist*
 .mc-lists.el
+
+snippets
+backups
+transient
+bookmarks
+srecode-map.el
+.cache
+projectile-bookmarks.eld
+anaconda-mode
+elpy
+meghanada
+indium-chrome-profile
