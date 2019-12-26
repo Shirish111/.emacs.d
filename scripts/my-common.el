@@ -68,7 +68,7 @@
   :demand t
   :ensure t
   :delight
-  :config (move-text-default-bindings))
+  :init (move-text-default-bindings))
 
 ;; Company
 (use-package company
@@ -143,8 +143,8 @@
   :bind (("C-x C-r" . recentf-open-files)))
 
 ;; Bookmarks
-(global-set-key (kbd "C-b") 'bookmark-bmenu-list)
-(global-set-key (kbd "C-c b") 'bookmark-set)
+(global-set-key (kbd "C-.") 'bookmark-bmenu-list)
+(global-set-key (kbd "C->") 'bookmark-set)
 
 ;; Backup Files
 (defvar --backup-directory (concat user-emacs-directory "backups"))
@@ -258,9 +258,26 @@
   :after treemacs magit
   :ensure t)
 
+;; Json Mode
 (use-package json-mode
   :mode "\\.json\\'"
   :ensure t)
+
+;; Dired
+(use-package dired
+  :init
+  (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)(dired-sort-toggle-or-edit))))
+
+;; Phi search
+(use-package phi-search
+  :init
+  :ensure t
+  :config)
+
+;; Abbrev
+(use-package abbrev
+  :delight
+  )
 
 (provide 'my-common)
 

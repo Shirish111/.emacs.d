@@ -22,6 +22,12 @@
   :commands
   (google-set-c-style))
 
+(use-package compile
+  :init
+  (add-hook 'c++-mode-hook (lambda ()
+                             (setq compile-command "r")
+                             (define-key c++-mode-map (kbd "C-c c") 'recompile))))
+
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here
