@@ -34,7 +34,7 @@
   "My Make directory"
   (interactive)
   (let* ((yank_content (current-kill 0))
-         (dirname (s-upper-camel-case yank_content))
+         (dirname (s-upper-camel-case (s-replace-all '(("II" ."2")("III" ."3")("IV". "4"))  yank_content)))
          (filepath (concat "../" dirname "/a.cpp")))
     (find-file filepath)
     (insert (concat "// " yank_content))

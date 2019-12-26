@@ -16,7 +16,8 @@
 ------------------------------------------------------------------
  [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
  [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
- [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search
+ [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search      [_r_] Reverse Search
+ [_S_] Mark all in region regexp
  [Click] Cursor at point       [_q_] Quit"
   ("l" mc/edit-lines :exit t)
   ("a" mc/mark-all-like-this :exit t)
@@ -26,7 +27,9 @@
   ("p" mc/mark-previous-like-this)
   ("P" mc/skip-to-previous-like-this)
   ("M-p" mc/unmark-previous-like-this)
-  ("s" mc/mark-all-in-region-regexp :exit t)
+  ("S" mc/mark-all-in-region-regexp :exit t)
+  ("s" phi-search :exit t)
+  ("r" phi-search-backward :exit t)
   ("0" mc/insert-numbers :exit t)
   ("A" mc/insert-letters :exit t)
   ("<mouse-1>" mc/add-cursor-on-click)

@@ -68,7 +68,7 @@
   :demand t
   :ensure t
   :delight
-  :config (move-text-default-bindings))
+  :init (move-text-default-bindings))
 
 ;; Company
 (use-package company
@@ -262,6 +262,22 @@
 (use-package json-mode
   :mode "\\.json\\'"
   :ensure t)
+
+;; Dired
+(use-package dired
+  :init
+  (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)(dired-sort-toggle-or-edit))))
+
+;; Phi search
+(use-package phi-search
+  :init
+  :ensure t
+  :config)
+
+;; Abbrev
+(use-package abbrev
+  :delight
+  )
 
 (provide 'my-common)
 
