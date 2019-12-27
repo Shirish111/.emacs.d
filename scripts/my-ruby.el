@@ -19,9 +19,9 @@
   (add-hook 'ruby-mode 'superword-mode)
 
   :bind
-  (([(meta down)] . ruby-forward-sexp)
-   ([(meta up)]   . ruby-backward-sexp)
-   (("C-c C-e"    . ruby-send-region))))  ;; Rebind since Rubocop uses C-c C-r
+  ((("C-c C-e" . ruby-send-region)))
+  :config
+  (define-key ruby-mode-map (kbd "C-c r") nil))  ;; Rebind since Rubocop uses C-c C-r
 
 ;; Web mode
 (use-package web-mode

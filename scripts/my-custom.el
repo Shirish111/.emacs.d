@@ -34,17 +34,22 @@
   "My Make directory"
   (interactive)
   (let* ((yank_content (current-kill 0))
-         (dirname (s-upper-camel-case (s-replace-all '(("II" ."2")("III" ."3")("IV". "4"))  yank_content)))
-         (filepath (concat "../" dirname "/a.cpp")))
-    (find-file filepath)
-    (insert (concat "// " yank_content))
+         (dirpath (concat "../" (s-upper-camel-case (s-replace-all '(("II" ."2")("III" ."3")("IV". "4"))  yank_content))))
+         (filepath (concat dirpath "/a.cpp")))
+    (make-directory dirpath)
+    (insert yank_content (find-file filepath))
     )
   )
-
-(global-set-key (kbd "C-c m") 'my-make-dir)
+(add-hook 'c++-mode-hook (lambda () (define-key c++-mode-map (kbd "C-c m") 'my-make-dir)))
 
 ;; Interactive Shell
-(setq shell-command-switch "-ic")
+(setq shell-command-switch "-c") ; Disable this for mac os
+
+;; Document Ruby Class
+(fset 'my-ruby-document-class
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 19 99 108 97 115 115 return right 67108896 134217830 134217847 up 5 return tab 35 32 25] 0 "%d")) arg)))
+
+(add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class)))
 
 (provide 'my-custom)
 

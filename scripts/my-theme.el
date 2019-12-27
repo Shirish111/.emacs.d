@@ -20,11 +20,19 @@
 (global-linum-mode t)
 
 ;; Spacemacs theme
-(use-package spacemacs-theme
-  :delight 
+;; (use-package spacemacs-theme
+;;   :delight 
+;;   :ensure t
+;;   :defer t
+;;   :init (load-theme 'spacemacs-dark t))
+
+;; Dracula theme
+(use-package dracula-theme
+  :init
+  (load-theme 'dracula t)
   :ensure t
-  :defer t
-  :init (load-theme 'spacemacs-dark t))
+  :config
+  )
 
 (provide 'my-theme)
 
