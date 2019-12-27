@@ -23,6 +23,7 @@
 
 ;; Rainbow Delimiters
 (use-package rainbow-delimiters
+  :ensure t
   :delight)
 
 ;; Expand Region
@@ -34,7 +35,14 @@
 ;; Multiple Cursors
 (use-package multiple-cursors
   :delight
-  :ensure t)
+  :ensure t
+  :bind (("C-." . mc/mark-next-like-this)
+         ("C->" . mc/skip-to-next-like-this)
+         ("C-c n" . mc/unmark-next-like-this)
+         ("C-," . mc/mark-previous-like-this)
+         ("C-<" . mc/skip-to-previous-like-this)
+         ("C-c p" . mc/unmark-previous-like-this)
+         ))
 
 ;;Which key
 (use-package which-key
@@ -52,7 +60,8 @@
 	    (require 'smartparens-config)
 	    (smartparens-global-mode)
 	    (smartparens-strict-mode t)
-	    (setq-default sp-escape-quotes-after-insert nil))
+	    (setq-default sp-escape-quotes-after-insert nil)
+            (sp-local-pair '(c++-mode ruby-mode java-mode python-mode) "'" "'"))
   :bind (("C-c r" . sp-rewrap-sexp)))
 
 ;; Avy
@@ -143,8 +152,8 @@
   :bind (("C-x C-r" . recentf-open-files)))
 
 ;; Bookmarks
-(global-set-key (kbd "C-.") 'bookmark-bmenu-list)
-(global-set-key (kbd "C->") 'bookmark-set)
+(global-set-key (kbd "C-'") 'bookmark-bmenu-list)
+(global-set-key (kbd "C-\"") 'bookmark-set)
 
 ;; Backup Files
 (defvar --backup-directory (concat user-emacs-directory "backups"))
@@ -277,6 +286,14 @@
 ;; Abbrev
 (use-package abbrev
   :delight
+  )
+
+;; Smerge
+(use-package smerge-mode
+  :init
+  (setq smerge-command-prefix "C-v")
+  :config
+  (add-hook 'smerge-mode-hook (lambda ()(define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
   )
 
 (provide 'my-common)
