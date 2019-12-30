@@ -6,7 +6,20 @@
 
 (use-package org
   :defer t
-  :ensure org-plus-contrib)
+  :ensure org-plus-contrib
+  :config
+  (setq org-agenda-files '("~/org/Agenda/agenda.org"))
+  (setq org-default-notes-file "~/org/Notes/notes.org")
+  (setq org-capture-templates '(
+                                ("t" "Todo" entry (file+headline "~/todo.org" "TODO")
+                                 "* TODO %^{Item}\n** %^{Description}\n")
+                                ))
+  (global-set-key (kbd "C-c c") 'org-capture)
+  (setq org-log-into-drawer t)
+  )
+
+(use-package org-drill
+  :ensure t)
 
 (use-package org-bullets
   :init
@@ -28,6 +41,7 @@
 				  (C . t)))
 			       ))
   :ensure t)
+
 
 (provide 'my-org)
 
