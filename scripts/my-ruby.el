@@ -73,6 +73,7 @@
   :ensure t
   :config
   (define-key ruby-tools-mode-map (kbd "C-;") nil)
+  (define-key ruby-tools-mode-map (kbd "C-'") nil)
   :init
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
   :diminish ruby-tools-mode)

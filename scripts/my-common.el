@@ -32,6 +32,10 @@
   :delight
   :bind(("C-;" . er/expand-region)))
 
+;; Smex
+(use-package smex
+  :ensure t)
+
 ;; Multiple Cursors
 (use-package multiple-cursors
   :delight
@@ -295,6 +299,20 @@
   :config
   (add-hook 'smerge-mode-hook (lambda ()(define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
   )
+
+;; ag
+(use-package ag
+  :ensure t)
+
+;; Markdown mode
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "markdown"))
+
 
 (provide 'my-common)
 
