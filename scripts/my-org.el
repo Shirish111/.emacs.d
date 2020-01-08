@@ -8,15 +8,47 @@
   :defer t
   :ensure org-plus-contrib
   :config
-  (setq org-agenda-files '("~/org/Agenda/agenda.org"))
-  (setq org-default-notes-file "~/org/Notes/notes.org")
-  (setq org-capture-templates '(
-                                ("t" "Todo" entry (file+headline "~/todo.org" "TODO")
-                                 "* TODO %^{Item}\n** %^{Description}\n")
-                                ))
+  
+  ;; (setq org-agenda-files '("/path/to/agenda.org"))
+  ;; (setq org-default-notes-file "/path/to/notes.org")
+
+  ;; Capture Templates
+  ;; (setq org-capture-templates '(
+  ;;                               ;; Set org capture templates here...
+  ;;                               ("t" "Todo" entry (file+headline "/path/to/todo.org" "TODO")
+  ;;                              "* TODO %^{Item}\n** %^{Description}\n")
+  ;;                               ))
   (global-set-key (kbd "C-c c") 'org-capture)
-  (setq org-log-into-drawer t)
+  (use-package ox-twbs
+    :ensure t
+    :demand t
+    )
+  (use-package ox-twbs
+    :ensure t)
+  ;; Org Publish
+  (require 'ox-publish)
+  ;; (setq org-publish-project-alist
+  ;;       '(
+  ;;         ;; ... add all the components here
+  ;;         ("org-notes"
+  ;;          :base-directory "/directory/path/to/org/files"
+  ;;          :base-extension "org"
+  ;;          :publishing-directory "/directory/path/to/publish"
+  ;;          :publishing-function org-twbs-publish-to-html
+  ;;          :recursive t
+  ;;          :headline-levels 4
+  ;;          :auto-preamble t
+  ;;          )
+  ;;         )
+  ;;       )
+  (setq org-src-fontify-natively t)
+  (use-package htmlize
+    :ensure t
+    :demand t)
+  (add-hook 'before-save-hook (lambda () (when (eq major-mode 'org-mode) (org-publish-current-file))))
   )
+
+(set-language-environment "UTF-8")
 
 (use-package org-drill
   :ensure t)
@@ -42,6 +74,13 @@
 			       ))
   :ensure t)
 
+(use-package org-journal
+  :init
+  :ensure t
+  :demand t
+  :config
+  ;;(setq org-journal-dir "/path/to/org-journal/")
+  (setq org-journal-date-format "%A, %d %B %Y"))
 
 (provide 'my-org)
 

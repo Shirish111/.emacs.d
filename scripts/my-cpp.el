@@ -9,7 +9,7 @@
   :init
   (add-hook 'c++-mode-hook 'flycheck-mode)
   (add-hook 'c-mode-hook 'flycheck-mode)
-  (add-hook 'before-save-hook '(lambda () (when (or (eq major-mode 'c++-mode) (eq major-mode 'c-mode)) (clang-format-buffer))))
+  (add-hook 'before-save-hook (lambda () (when (or (eq major-mode 'c++-mode) (eq major-mode 'c-mode)) (clang-format-buffer))))
   :config
   (setq clang-format-style "Google")
   ;; `NOTE': Set clang-format executable location
