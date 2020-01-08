@@ -30,7 +30,9 @@
 (use-package expand-region
   :ensure t
   :delight
-  :bind(("C-;" . er/expand-region)))
+  :bind(("C-;" . er/expand-region))
+  :after (org))
+  
 
 ;; Smex
 (use-package smex

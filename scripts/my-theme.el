@@ -26,6 +26,13 @@
 ;;   :defer t
 ;;   :init (load-theme 'spacemacs-dark t))
 
+;; Monokai theme
+;; (use-package monokai-theme
+;;   :init
+;;   :ensure t
+;;   :config
+;;   )
+
 ;; Dracula theme
 (use-package dracula-theme
   :init

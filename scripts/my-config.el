@@ -14,6 +14,7 @@
 (use-package my-java)
 (use-package my-js)
 (use-package my-hydra)
+;(use-package my-personal)
 
 (provide 'my-config)
 

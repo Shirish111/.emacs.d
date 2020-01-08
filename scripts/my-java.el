@@ -21,8 +21,9 @@
               (meghanada-mode t)
               (smartparens-mode t)
               (rainbow-delimiters-mode t)
-              (highlight-symbol-mode t)
-              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save)))
+              ;(highlight-symbol-mode t)
+              (add-hook 'before-save-hook 'meghanada-code-beautify-before-save))
+            )
 
   :config
   (use-package realgud
