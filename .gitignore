@@ -30,3 +30,7 @@ persist
 .org-id-locations
 org-templates
 org-journal.cache
+
+url
+vimish-fold
+amx-items

@@ -315,6 +315,18 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "markdown"))
 
+;; RestClient
+(use-package restclient
+  :ensure t)
+
+;; Vimish Fold
+(use-package vimish-fold
+  :ensure t
+  :init
+  (vimish-fold-global-mode 1)
+  (global-set-key (kbd "C-c f") #'vimish-fold)
+  (global-set-key (kbd "C-c F") #'vimish-fold-delete)
+  )
 
 (provide 'my-common)
 

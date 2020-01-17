@@ -15,15 +15,16 @@
   :bind (("C-c C-r" . ivy-resume)))
 
 (setq ivy-re-builders-alist
-      '((swiper . ivy--regex-plus)
-        (t      . ivy--regex-fuzzy)))
+      '((read-file-name-internal . ivy--regex-fuzzy)
+        (counsel-M-x . ivy--regex-fuzzy)
+        (t . ivy--regex-plus)))
 
 ;; Counsel
 (use-package counsel
   :delight
   :ensure t
   :demand t
-  :bind (("C-s" . swiper)
+  :bind (("M-s s" . swiper)
 	 ("M-x" . counsel-M-x)
 	 ("C-x C-f". counsel-find-file)
 	 ("<f1> f" . counsel-describe-function)
