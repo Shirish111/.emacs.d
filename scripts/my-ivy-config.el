@@ -17,6 +17,9 @@
 (setq ivy-re-builders-alist
       '((read-file-name-internal . ivy--regex-fuzzy)
         (counsel-M-x . ivy--regex-fuzzy)
+        (counsel-projectile-find-file . ivy--regex-fuzzy)
+        (ivy-switch-buffer . ivy--regex-fuzzy)
+        (projectile-completing-read . ivy--regex-fuzzy)
         (t . ivy--regex-plus)))
 
 ;; Counsel
@@ -36,7 +39,18 @@
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
 	 ("C-c k" . counsel-ag)
-	 ("C-x l" . counsel-locate)))
+	 ("C-x l" . counsel-locate))
+  :config
+  (setq ivy-initial-inputs-alist nil))
+
+(use-package counsel-projectile
+  :delight
+  :ensure t
+  :demand t
+  :init
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  )
+
 
 (provide 'my-ivy-config)
 

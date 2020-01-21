@@ -33,7 +33,7 @@
     (ol-bbdb ol-bibtex ol-docview ol-eww ol-gnus org-habit ol-info ol-irc ol-mhe ol-rmail ol-w3m)))
  '(package-selected-packages
    (quote
-    (vimish-fold emmet-mode mustache-mode ob-restclient restclient epresent htmlize ox-twbs ox-publish org-journal monokai-theme sanityinc-tomorrow-bright markdown-mode org-drill alert ag dracula-theme phi-search projectile-rails js-comint json-mode indium nodejs-repl rubocopfmt treemacs-evil treemacs org-bullets org-mode org-babel-eval-in-repl org-contrib-mode org-plus-contrib delight dashboard magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
+    (counsel-projectile vimish-fold emmet-mode mustache-mode ob-restclient restclient epresent htmlize ox-twbs ox-publish org-journal monokai-theme sanityinc-tomorrow-bright markdown-mode org-drill alert ag dracula-theme phi-search projectile-rails js-comint json-mode indium nodejs-repl rubocopfmt treemacs-evil treemacs org-bullets org-mode org-babel-eval-in-repl org-contrib-mode org-plus-contrib delight dashboard magit clang-format flycheck yasnippet company-quickhelp company move-text avy Avy ivy-mode counsel ivy auto-complete which-key smartparens hydra multiple-cursors expand-region spacemacs-theme zenburn-theme cyberpunk-theme rainbow-delimiters highlight-parentheses use-package smex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
