@@ -75,6 +75,23 @@ _q_: exit
   ("q" exit)
   ("z" nil "leave"))
 
+;; Rails Hydra
+(defhydra my-hydra-projectile-rails-find (:color blue :columns 8)
+      "Find a resources"
+      ("m" projectile-rails-find-model       "model")
+      ("v" projectile-rails-find-view        "view")
+      ("c" projectile-rails-find-controller  "controller")
+      ("j" projectile-rails-find-job         "job")
+      ("p" projectile-rails-find-policy      "policy")
+      ("h" projectile-rails-find-helper      "helper")
+      ("l" projectile-rails-find-lib         "lib")
+      ("s" projectile-rails-find-service      "service")
+      ("i" projectile-rails-find-initializer "initializer")
+      ("@" projectile-rails-find-mailer      "mailer"))      
+
+(define-key projectile-rails-mode-map (kbd "s-R") 'my-hydra-projectile-rails-find/body)
+(define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body)
+
 (provide 'my-hydra)
 
 ;;; my-hydra package ends here
