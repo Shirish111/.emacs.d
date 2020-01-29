@@ -15,7 +15,10 @@
 (use-package my-html)
 (use-package my-js)
 (use-package my-hydra)
-;(use-package my-personal)
+(use-package my-neotree)
+(use-package my-eshell)
+(add-to-list 'load-path "~/.emacs.d/scripts/emacs_custom")
+(use-package my-personal)
 
 (provide 'my-config)
 

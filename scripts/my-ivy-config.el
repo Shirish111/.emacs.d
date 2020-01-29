@@ -11,7 +11,8 @@
   :config (progn
 	    (ivy-mode 1)
 	    (setq ivy-use-virtual-buffers t)
-	    (setq ivy-count-format "(%d/%d) "))
+	    (setq ivy-count-format "(%d/%d) ")
+            (setq ivy-extra-directories ()))
   :bind (("C-c C-r" . ivy-resume)))
 
 (setq ivy-re-builders-alist
@@ -50,6 +51,13 @@
   :init
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   )
+
+(setq counsel-find-file-ignore-regexp
+        (concat
+         ;; File names beginning with # or .
+         "\\(?:\\`[#.]\\)"
+         ;; File names ending with # or ~
+         "\\|\\(?:\\`.+?[#~]\\'\\)"))
 
 
 (provide 'my-ivy-config)

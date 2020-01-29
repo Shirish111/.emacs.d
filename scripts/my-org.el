@@ -5,10 +5,12 @@
 
 
 (use-package org
+  :init
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode) (auto-fill-mode t)))
   :defer t
   :ensure org-plus-contrib
   :config
-  
+  (define-key org-mode-map (kbd "C-'") nil)
   ;; (setq org-agenda-files '("/path/to/agenda.org"))
   ;; (setq org-default-notes-file "/path/to/notes.org")
 
@@ -74,7 +76,8 @@
 				  (python . t)
 				  (shell . t)
 				  (C . t)
-                                  (restclient . t)))
+                                  (restclient . t)
+                                  (latex . t)))
 			       ))
   :ensure t)
 

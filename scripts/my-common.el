@@ -48,6 +48,8 @@
          ("C-," . mc/mark-previous-like-this)
          ("C-<" . mc/skip-to-previous-like-this)
          ("C-c p" . mc/unmark-previous-like-this)
+         ("C-)" . mc/edit-lines)
+         ("<s-mouse-1>" . mc/add-cursor-on-click)
          ))
 
 ;;Which key
@@ -75,7 +77,7 @@
   :delight
   :ensure t
   :demand t
-  :bind (("C-l" . 'avy-goto-char))
+  :bind (("M-g c" . 'avy-goto-char))
   )
 
 ;; Move Text
@@ -327,6 +329,8 @@
   (global-set-key (kbd "C-c f") #'vimish-fold)
   (global-set-key (kbd "C-c F") #'vimish-fold-delete)
   )
+
+;; Bind F8 to show the tree
 
 (provide 'my-common)
 

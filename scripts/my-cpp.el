@@ -24,9 +24,7 @@
 
 (use-package compile
   :init
-  (add-hook 'c++-mode-hook (lambda ()
-                             ;(setq compile-command "g++ a.cpp")
-                             (define-key c++-mode-map (kbd "C-c x") 'recompile))))
+  (define-key prog-mode-map (kbd "C-c x") 'recompile))
 
 
 (provide 'my-cpp)

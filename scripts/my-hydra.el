@@ -85,12 +85,14 @@ _q_: exit
       ("p" projectile-rails-find-policy      "policy")
       ("h" projectile-rails-find-helper      "helper")
       ("l" projectile-rails-find-lib         "lib")
-      ("s" projectile-rails-find-service      "service")
+      ("s" projectile-rails-find-service     "service")
       ("i" projectile-rails-find-initializer "initializer")
-      ("@" projectile-rails-find-mailer      "mailer"))      
+      ("r" projectile-rails-goto-gemfile     "Gemfile")
+      ("g" projectile-rails-goto-            "routes")
+      ("@" projectile-rails-find-mailer      "mailer"))
 
-(define-key projectile-rails-mode-map (kbd "s-R") 'my-hydra-projectile-rails-find/body)
-(define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body)
+(define-key projectile-rails-mode-map (kbd "s-r") 'my-hydra-projectile-rails-find/body)
+;(define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body)
 
 (provide 'my-hydra)
 
