@@ -1,2 +1,3 @@
-alias ff find-file $1
+alias r ruby ~/Scripts/Ruby/Compilation/run.rb
 alias ll ls -l $*
+alias ff find-file $1

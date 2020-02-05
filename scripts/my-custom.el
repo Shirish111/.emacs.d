@@ -40,10 +40,10 @@
     (insert yank_content (find-file filepath))
     )
   )
-(add-hook 'c++-mode-hook (lambda () (define-key c++-mode-map (kbd "C-c m") 'my-make-dir)))
+(eval-after-load 'c++-mode '(define-key c++-mode-map (kbd "C-c m") 'my-make-dir))
 
 ;; Interactive Shell
-(setq shell-command-switch "-ic") ; Disable this for mac os
+(setq shell-command-switch "-c") ; Disable this for mac os
 
 
 ;; Keyboard macros

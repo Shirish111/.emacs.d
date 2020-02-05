@@ -77,6 +77,7 @@
 				  (shell . t)
 				  (C . t)
                                   (restclient . t)
+                                  (dot . t )
                                   (latex . t)))
 			       ))
   :ensure t)
@@ -88,8 +89,6 @@
   :config
   ;;(setq org-journal-dir "/path/to/org-journal/")
   (setq org-journal-date-format "%A, %d %B %Y"))
-
-
 
 (provide 'my-org)
 

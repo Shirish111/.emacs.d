@@ -16,12 +16,12 @@
   :bind (("C-c C-r" . ivy-resume)))
 
 (setq ivy-re-builders-alist
-      '((read-file-name-internal . ivy--regex-fuzzy)
-        (counsel-M-x . ivy--regex-fuzzy)
-        (counsel-projectile-find-file . ivy--regex-fuzzy)
-        (ivy-switch-buffer . ivy--regex-fuzzy)
-        (projectile-completing-read . ivy--regex-fuzzy)
-        (t . ivy--regex-plus)))
+      '((read-file-name-internal . ivy--regex-ignore-order)
+        (counsel-M-x . ivy--regex-ignore-order)
+        (counsel-projectile-find-file . ivy--regex-ignore-order)
+        (ivy-switch-buffer . ivy--regex-ignore-order)
+        (projectile-completing-read . ivy--regex-ignore-order)
+        (t . ivy--regex-ignore-order)))
 
 ;; Counsel
 (use-package counsel

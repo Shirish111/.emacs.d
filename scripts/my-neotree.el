@@ -22,8 +22,9 @@
               ("p" . neotree-copy-filepath-to-yank-ring)
               ("C" . neotree-create-node)
               ("m" . neotree-rename-node)
-              ))
-  )
+              ("d" . neotree-delete-node)
+              )))
+
 (global-set-key (kbd "C-'") 'neotree-toggle)
 
 
