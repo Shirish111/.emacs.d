@@ -22,7 +22,7 @@
 
 (use-package compile
   :init
-  (global-set-key (kbd "C-c x") 'recompile))
+  (global-set-key (kbd "M-r") 'recompile))
 
 (defun my-cpp-fetch-func-params()
   "
