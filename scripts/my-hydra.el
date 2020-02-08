@@ -87,8 +87,8 @@ _q_: exit
       ("l" projectile-rails-find-lib         "lib")
       ("s" projectile-rails-find-service     "service")
       ("i" projectile-rails-find-initializer "initializer")
-      ("r" projectile-rails-goto-gemfile     "Gemfile")
-      ("g" projectile-rails-goto-            "routes")
+      ("g" projectile-rails-goto-gemfile     "Gemfile")
+      ("r" projectile-rails-goto-routes      "routes")
       ("@" projectile-rails-find-mailer      "mailer"))
 
 (define-key projectile-rails-mode-map (kbd "s-r") 'my-hydra-projectile-rails-find/body)

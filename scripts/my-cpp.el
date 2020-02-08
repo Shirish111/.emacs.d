@@ -22,7 +22,7 @@
 
 (use-package compile
   :init
-  (define-key prog-mode-map (kbd "C-c x") 'recompile))
+  (global-set-key (kbd "C-c x") 'recompile))
 
 (defun my-cpp-fetch-func-params()
   "
@@ -66,13 +66,13 @@ void f(int a, int b) {
       (insert
        (string-join
         (-concat '("cout")
-                 (--map (format " << \"%s = \" << %s " it it)
+                 (--map (format " << \" %s = \" << %s " it it)
                         (--remove
                          (ht-get my-cpp-ht it)
-                         (s-split-words my-cpp-line))) '(" << \"\\n\";\n"))))
+                         (s-split-words my-cpp-line))) '(" << endl;\n"))))
       (clang-format-buffer))))
 
-(eval-after-load 'c++-mode '(define-key c++-mode-map (kbd "C-c l") 'my-cpp-debug-func-params))
+(define-key c++-mode-map (kbd "C-c l") 'my-cpp-debug-func-params)
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

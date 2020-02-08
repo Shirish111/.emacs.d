@@ -330,6 +330,12 @@
   (global-set-key (kbd "C-c F") #'vimish-fold-delete)
   )
 
+(use-package tiny
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c _") 'tiny-expand)
+  )
+
 ;; Bind F8 to show the tree
 
 (provide 'my-common)
