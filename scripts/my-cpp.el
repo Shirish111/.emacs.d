@@ -20,10 +20,6 @@
   :commands
   (google-set-c-style))
 
-(use-package compile
-  :init
-  (global-set-key (kbd "M-r") 'recompile))
-
 (defun my-cpp-fetch-func-params()
   "
 This function copies function paramters as a string
@@ -72,7 +68,11 @@ void f(int a, int b) {
                          (s-split-words my-cpp-line))) '(" << endl;\n"))))
       (clang-format-buffer))))
 
-(define-key c++-mode-map (kbd "C-c l") 'my-cpp-debug-func-params)
+(eval-after-load 'cc-mode
+  '(progn
+     (define-key c++-mode-map (kbd "C-c l") 'my-cpp-debug-func-params)
+     )
+  )
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

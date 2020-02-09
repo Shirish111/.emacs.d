@@ -287,7 +287,6 @@
 
 ;; Phi search
 (use-package phi-search
-  :init
   :ensure t
   :config)
 
@@ -335,6 +334,9 @@
   :config
   (global-set-key (kbd "C-c _") 'tiny-expand)
   )
+
+(global-hl-line-mode 1)
+
 
 ;; Bind F8 to show the tree
 

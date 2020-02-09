@@ -1,4 +1,4 @@
-alias tm cd /tmp/abc
-alias ff find-file $1
-alias ll ls -l $*
 alias r ruby ~/Scripts/Ruby/Compilation/run.rb
+alias ll ls -l $*
+alias ff find-file $1
+alias tm cd /tmp/abc

@@ -59,6 +59,9 @@
          ;; File names ending with # or ~
          "\\|\\(?:\\`.+?[#~]\\'\\)"))
 
+;; Views
+(global-set-key (kbd "C-c v") 'ivy-push-view)
+(global-set-key (kbd "C-c V") 'ivy-pop-view)
 
 (provide 'my-ivy-config)
 

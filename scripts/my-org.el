@@ -83,7 +83,6 @@
   :ensure t)
 
 (use-package org-journal
-  :init
   :ensure t
   :demand t
   :config
