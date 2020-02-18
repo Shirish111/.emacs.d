@@ -329,14 +329,21 @@
   (global-set-key (kbd "C-c F") #'vimish-fold-delete)
   )
 
+;; Tiny
 (use-package tiny
   :ensure t
   :config
   (global-set-key (kbd "C-c _") 'tiny-expand)
   )
 
-(global-hl-line-mode 1)
-
+;; YaTemplate
+(use-package yatemplate
+  :ensure t
+  :config
+  (auto-insert-mode t)
+  (setq auto-insert-query nil)
+  (setq auto-insert-alist nil)
+  (yatemplate-fill-alist))
 
 ;; Bind F8 to show the tree
 

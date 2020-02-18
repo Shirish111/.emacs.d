@@ -57,7 +57,10 @@
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\346\346\364\364\342\342\342\364\364" 0 "%d")) arg)))
 
 (global-set-key (kbd "M-s p") 'my-swap-params)
+(global-set-key (kbd "M-z") 'beginning-of-line-text)
 
+;; Highlight current line
+(global-hl-line-mode 1)
 (provide 'my-custom)
 
 ;;; my-custom package ends here

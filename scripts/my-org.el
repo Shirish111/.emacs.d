@@ -6,7 +6,9 @@
 
 (use-package org
   :init
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode) (auto-fill-mode t)))
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-bullets-mode)
+                             (auto-fill-mode t)))
   :defer t
   :ensure org-plus-contrib
   :config

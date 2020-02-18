@@ -13,7 +13,6 @@
   ;; `NOTE': Set clang-format executable location
   (setq clang-format-executable "/usr/local/clang-9.0.0/bin/clang-format")
   )
-
 (use-package google-c-style
   :defer t
   :ensure t
