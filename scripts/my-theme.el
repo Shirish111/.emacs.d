@@ -35,11 +35,11 @@
 
 ;; Dracula theme
 (use-package dracula-theme
-  :init
-  (load-theme 'dracula t)
-  :ensure t
-  :config
-  )
+ :init
+ (load-theme 'dracula t)
+ :ensure t
+ :config
+ )
 
 ;; (use-package doom-themes
 ;;   :ensure t
@@ -47,7 +47,7 @@
 ;;   ;; Global settings (defaults)
 ;;   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 ;;         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-;;   (load-theme 'doom-one t)
+;;   (load-theme 'doom-manegarm t)
 
 ;;   ;; Enable flashing mode-line on errors
 ;;   (doom-themes-visual-bell-config)
@@ -59,7 +59,7 @@
 ;;   (doom-themes-treemacs-config)
   
 ;;   ;; Corrects (and improves) org-mode's native fontification.
-;;   (doom-themes-org-config))
+;;  (doom-themes-org-config))
 
 (provide 'my-theme)
 

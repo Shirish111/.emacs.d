@@ -84,12 +84,12 @@
 			       ))
   :ensure t)
 
-(use-package org-journal
-  :ensure t
-  :demand t
-  :config
-  ;;(setq org-journal-dir "/path/to/org-journal/")
-  (setq org-journal-date-format "%A, %d %B %Y"))
+;; (use-package org-journal
+;;   ;:ensure t
+;;   :demand t
+;;   :config
+;;   ;;(setq org-journal-dir "/path/to/org-journal/")
+;;   (setq org-journal-date-format "%A, %d %B %Y"))
 
 (provide 'my-org)
 

@@ -48,6 +48,11 @@
                (propertize (concat (eshell/pwd) " \n$ ") 'face `(:foreground "white"))
               )))
 
+;; Bash Aliases
+;; (use-package load-bash-alias
+;;   :ensure t
+;;   :config
+;;   (setq load-bash-alias-bashrc-file "/home/shirish/.bash_it/aliases/custom.aliases.bash"))
 
 (provide 'my-eshell)
 

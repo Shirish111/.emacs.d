@@ -72,6 +72,28 @@ void f(int a, int b) {
      (define-key c++-mode-map (kbd "C-c l") 'my-cpp-debug-func-params)
      )
   )
+
+(defun my-cpp-cout-variable-f()
+  (interactive)
+  (let ((end_pos (point))
+        (start_pos (progn (left-word) (point)))
+        )
+    (kill-region start_pos end_pos)
+    (setq my-cpp-word (current-kill 0))
+  (insert (concat "<< " "\" " my-cpp-word " = \" << " my-cpp-word))))
+(defun my-cpp-cin-variable-f()
+  (interactive)
+  (let ((end_pos (point))
+        (start_pos (progn (left-word) (point)))
+        )
+    (kill-region start_pos end_pos)
+    (setq my-cpp-word (current-kill 0))
+  (insert (concat  ">> " my-cpp-word))))
+
+
+(global-set-key (kbd "M-]") 'my-cpp-cout-variable-f)
+(global-set-key (kbd "M-[") 'my-cpp-cin-variable-f)
+  
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

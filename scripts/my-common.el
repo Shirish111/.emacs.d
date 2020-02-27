@@ -272,8 +272,8 @@
   :config (treemacs-icons-dired-mode))
 
 (use-package treemacs-magit
-  :after treemacs magit
-  :ensure t)
+  :after treemacs magit)
+  ;:ensure t)
 
 ;; Json Mode
 (use-package json-mode
@@ -344,8 +344,6 @@
   (setq auto-insert-query nil)
   (setq auto-insert-alist nil)
   (yatemplate-fill-alist))
-
-;; Bind F8 to show the tree
 
 (provide 'my-common)
 
