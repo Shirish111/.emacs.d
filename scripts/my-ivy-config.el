@@ -36,11 +36,13 @@
 	 ("<f1> l" . counsel-find-library)
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
-	 ;("C-c c" . counsel-compile)
+         ;;("C-c c" . counsel-compile)
+         ("C-x f" . counsel-projectile-find-file)
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
 	 ("C-c k" . counsel-ag)
-	 ("C-x l" . counsel-locate))
+	 ("C-x l" . counsel-locate)
+         ("C-<tab>" . counsel-company))
   :config
   (setq ivy-initial-inputs-alist nil))
 
@@ -62,6 +64,20 @@
 ;; Views
 (global-set-key (kbd "C-c v") 'ivy-push-view)
 (global-set-key (kbd "C-c V") 'ivy-pop-view)
+
+;; Ivy Posframe
+;; (use-package ivy-posframe
+;;   :init
+;;   :ensure t
+;;   :config
+;;   ;; display at `ivy-posframe-style'
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display)))
+;;   ;(setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-)))
+;;   (ivy-posframe-mode 1)
+;;   )
+
+
 
 (provide 'my-ivy-config)
 

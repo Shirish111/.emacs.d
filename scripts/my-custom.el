@@ -48,10 +48,10 @@
 
 ;; Keyboard macros
 ;; Document Ruby Class
-(fset 'my-ruby-document-class
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 19 99 108 97 115 115 return right 67108896 134217830 134217847 up 5 return tab 35 32 25] 0 "%d")) arg)))
+(fset 'my-ruby-document-class-or-module
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up return 35 32 25] 0 "%d")) arg)))
 
-(add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class)))
+(add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class-or-module)))
 
 (fset 'my-swap-params
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\346\346\364\364\342\342\342\364\364" 0 "%d")) arg)))
