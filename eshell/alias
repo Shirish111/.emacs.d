@@ -1,4 +1,20 @@
-alias r ruby ~/Scripts/Ruby/Compilation/run.rb
-alias ll ls -l $*
-alias ff find-file $1
+alias .androidssh ssh -i ~/.ssh/android -p 8022 192.168.43.1
+alias .inst sudo apt install 
+alias .upg sudo apt upgrade
+alias .upd echo chrsudo123 | sudo -S apt update
+alias studio /home/shirish/Downloads/android-studio/bin/studio.sh 
+alias utils /home/shirish/Ruby/tty/app2/exe/app2
+alias b xdg-open
+alias rm rm -i
+alias srcrc source ~/.bashrc
 alias tm cd /tmp/abc
+alias alert notify-send --urgency low -i "$([ $?   0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//')"
+alias l ls -CF
+alias la ls -A
+alias ll ls -alF
+alias egrep egrep --color auto
+alias fgrep fgrep --color auto
+alias grep grep --color auto
+alias ls ls --color auto
+alias ff find-file $1
+alias r ruby ~/Scripts/Ruby/Compilation/run.rb

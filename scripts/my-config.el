@@ -19,6 +19,7 @@
 (use-package my-treemacs)
 (use-package my-eshell)
 (add-to-list 'load-path "~/.emacs.d/scripts/emacs_custom")
+;(use-package my-dashboard)
 (use-package my-personal)
 
 (provide 'my-config)

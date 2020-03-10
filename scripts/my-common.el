@@ -138,15 +138,6 @@
   :delight
   :bind (("C-x g" . magit-status)))
 
-;; Dashboard
-(use-package dashboard
-  :ensure t
-  :delight dashboard-mode
-  :config
-  (dashboard-setup-startup-hook)
-  (setq dashboard-banner-logo-title "Welcome to Emacs Dashboard")
-  (setq dashboard-center-content t))
-
 ;; Recentf-mode
 (use-package recentf
   :demand t
