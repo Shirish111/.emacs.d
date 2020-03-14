@@ -260,6 +260,18 @@
   :bind (("C-c o" . ace-window))
   )
 
+;; persistent-scratch
+(use-package persistent-scratch
+  :ensure t
+  :config
+  (persistent-scratch-setup-default))
+
+;; Hash Library
+(use-package ht
+  :init
+  :demand t
+  :ensure t)
+
 (provide 'my-common)
 
 ;;; my-common.el ends here

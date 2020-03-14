@@ -37,10 +37,10 @@
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
          ;;("C-c c" . counsel-compile)
-         ("C-x f" . counsel-projectile-find-file)
+         ("s-f" . counsel-projectile-find-file)
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
-	 ("C-c k" . counsel-ag)
+	 ("s-g" . counsel-ag)
 	 ("C-x l" . counsel-locate)
          ("C-<tab>" . counsel-company))
   :config

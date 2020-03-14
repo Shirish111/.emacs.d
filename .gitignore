@@ -35,3 +35,5 @@ url
 vimish-fold
 amx-items
 rake.cache
+/.persistent-scratch
+/eshell/lastdir

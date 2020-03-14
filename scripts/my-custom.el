@@ -61,6 +61,10 @@
 
 ;; Highlight current line
 (global-hl-line-mode 1)
+
+;; Switch frames
+(global-set-key (kbd "s-d") 'select-frame-by-name)
+
 (provide 'my-custom)
 
 ;;; my-custom package ends here
