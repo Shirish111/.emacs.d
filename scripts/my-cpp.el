@@ -61,7 +61,7 @@ void f(int a, int b) {
       (insert
        (string-join
         (-concat '("cout")
-                 (--map (format " << \" %s = \" << %s " it it)
+                 (--map (format " << \" %s: \" << %s " it it)
                         (--remove
                          (ht-get my-cpp-ht it)
                          (s-split-words my-cpp-line))) '(" << endl;\n"))))
@@ -80,7 +80,7 @@ void f(int a, int b) {
         )
     (kill-region start_pos end_pos)
     (setq my-cpp-word (current-kill 0))
-  (insert (concat "<< " "\" " my-cpp-word " = \" << " my-cpp-word))))
+  (insert (concat "<< " "\" " my-cpp-word ": \" << " my-cpp-word))))
 (defun my-cpp-cin-variable-f()
   (interactive)
   (let ((end_pos (point))
