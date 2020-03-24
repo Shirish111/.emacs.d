@@ -2,6 +2,15 @@
 ;;; Commentary
 ;; The `my-common' package is used to load the common utilities
 
+(use-package auto-package-update
+  :ensure t
+  :config
+  (setq auto-package-update-prompt-before-update t)
+
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 ;;; Code
 ;; Diminish and Delight
 (use-package diminish
@@ -271,6 +280,15 @@
   :init
   :demand t
   :ensure t)
+
+;; Diff Highlight
+(use-package diff-hl
+  :init
+  (global-diff-hl-mode)
+  :ensure t
+  :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  )
 
 (provide 'my-common)
 

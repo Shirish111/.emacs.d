@@ -65,6 +65,9 @@
 ;; Switch frames
 (global-set-key (kbd "s-d") 'select-frame-by-name)
 
+;; Switch Buffers
+(global-set-key (kbd "s-b") 'counsel-switch-buffer)
+
 (provide 'my-custom)
 
 ;;; my-custom package ends here

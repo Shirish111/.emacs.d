@@ -11,7 +11,7 @@
   :config
   (setq clang-format-style "Google")
   ;; `NOTE': Set clang-format executable location
-  (setq clang-format-executable "/usr/local/clang-9.0.0/bin/clang-format")
+  (setq clang-format-executable "/usr/bin/clang")
   )
 (use-package google-c-style
   :defer t

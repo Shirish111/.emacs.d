@@ -40,7 +40,7 @@
          ("s-f" . counsel-projectile-find-file)
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
-	 ("s-g" . counsel-ag)
+	 ("s-s" . counsel-ag)
 	 ("C-x l" . counsel-locate)
          ("C-<tab>" . counsel-company))
   :config
@@ -77,6 +77,14 @@
 ;;   (ivy-posframe-mode 1)
 ;;   )
 
+
+;; Counsel Tramp
+(use-package counsel-tramp
+  :init
+  :ensure t
+  :config
+  (setq tramp-default-method "ssh")
+  (define-key global-map (kbd "C-c s") 'counsel-tramp))
 
 
 (provide 'my-ivy-config)
