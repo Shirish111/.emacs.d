@@ -12,6 +12,13 @@
   (auto-package-update-maybe))
 
 ;;; Code
+;; (use-package smex
+;;   :init
+;;   :ensure t
+;;   :demand t
+;;   :config
+;;   (smex-initialize))
+
 ;; Diminish and Delight
 (use-package diminish
   :ensure t)
@@ -43,9 +50,9 @@
   :after (org))
   
 
-;; Smex
-(use-package smex
-  :ensure t)
+;; ;; Smex
+;; (use-package smex
+;;   :ensure t)
 
 ;; Multiple Cursors
 (use-package multiple-cursors
@@ -86,8 +93,7 @@
   :delight
   :ensure t
   :demand t
-  :bind (("M-g c" . 'avy-goto-char))
-  )
+  :bind (("s-l" . 'avy-goto-char)))
 
 ;; Move Text
 (use-package move-text
@@ -147,6 +153,11 @@
   :delight
   :bind (("C-x g" . magit-status)))
 
+;; Forge
+(use-package forge
+  :ensure t
+  :after magit)
+
 ;; Recentf-mode
 (use-package recentf
   :demand t
@@ -160,8 +171,8 @@
   :bind (("C-x C-r" . recentf-open-files)))
 
 ;; Bookmarks
-(global-set-key (kbd "C-'") 'bookmark-bmenu-list)
-(global-set-key (kbd "C-\"") 'bookmark-set)
+;(global-set-key (kbd "C-'") 'bookmark-bmenu-list)
+;(global-set-key (kbd "C-\"") 'bookmark-set)
 
 ;; Backup Files
 (defvar --backup-directory (concat user-emacs-directory "backups"))
@@ -289,6 +300,18 @@
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   )
+
+;; Power Thesaurus
+(use-package powerthesaurus
+  :init
+  :ensure t
+  :config
+  (global-set-key (kbd "s-.") 'powerthesaurus-lookup-word-at-point)
+  (global-set-key (kbd "s-,") 'powerthesaurus-lookup-word)
+  )
+
+;; Inhibit Startup Screen
+(setq inhibit-startup-message t)
 
 (provide 'my-common)
 

@@ -16,9 +16,6 @@
 ;; Tool bar disable
 (tool-bar-mode -1)
 
-;; Linum Mode
-;(global-linum-mode t)
-
 ;; Spacemacs theme
 ;; (use-package spacemacs-theme
 ;;   :delight 

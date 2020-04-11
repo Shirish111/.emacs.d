@@ -40,7 +40,7 @@
          ("s-f" . counsel-projectile-find-file)
 	 ("C-c g" . counsel-git)
 	 ("C-c j" . counsel-git-grep)
-	 ("s-s" . counsel-ag)
+	 ("s-g" . counsel-ag)
 	 ("C-x l" . counsel-locate)
          ("C-<tab>" . counsel-company))
   :config
@@ -86,6 +86,21 @@
   (setq tramp-default-method "ssh")
   (define-key global-map (kbd "C-c s") 'counsel-tramp))
 
+(use-package prescient
+  :init
+  :demand t
+  :ensure t
+  :config
+  (prescient-persist-mode +1)
+  )
+
+(use-package ivy-prescient
+  :init
+  :demand t
+  :ensure t
+  :config
+  (ivy-prescient-mode +1)
+  )
 
 (provide 'my-ivy-config)
 

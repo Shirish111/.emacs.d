@@ -11,7 +11,7 @@
   :config
   (setq clang-format-style "Google")
   ;; `NOTE': Set clang-format executable location
-  (setq clang-format-executable "/usr/bin/clang")
+  (setq clang-format-executable "/usr/local/bin/clang-format")
   )
 (use-package google-c-style
   :defer t
@@ -53,8 +53,14 @@ void f(int a, int b) {
   (save-excursion
     (let ((my-cpp-line (my-cpp-fetch-func-params))
           (my-cpp-ht (ht ("int" t)
+                         ("short")
+                         ("Node")
+                         ("TreeNode")
+                         ("List")
                          ("float" t)
                          ("double" t)
+                         ("long long" t)
+                         ("long double" t)
                          ("string" t)
                          ("long" t))))
       (forward-line)
@@ -93,6 +99,9 @@ void f(int a, int b) {
 
 (global-set-key (kbd "M-]") 'my-cpp-cout-variable-f)
 (global-set-key (kbd "M-[") 'my-cpp-cin-variable-f)
+
+;; Flycheck
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++14")(setq flycheck-clang-language-standard "c++14")))
   
 (provide 'my-cpp)
 

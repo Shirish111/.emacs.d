@@ -49,7 +49,7 @@
 ;; Keyboard macros
 ;; Document Ruby Class
 (fset 'my-ruby-document-class-or-module
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up return 35 32 25] 0 "%d")) arg)))
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up 5 return 35 32 25] 0 "%d")) arg)))
 
 (add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class-or-module)))
 
@@ -59,15 +59,31 @@
 (global-set-key (kbd "M-s p") 'my-swap-params)
 (global-set-key (kbd "M-z") 'beginning-of-line-text)
 
+;; Copy Source Code Block
+(fset 'my-org-copy-src-block
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([down 3 39 8388715 134217847 3 39] 0 "%d")) arg)))
+
+(add-hook 'org-mode-hook (lambda () (define-key org-mode-map (kbd "s-x") 'my-org-copy-src-block)))
+
+
 ;; Highlight current line
 (global-hl-line-mode 1)
 
 ;; Switch frames
-(global-set-key (kbd "s-d") 'select-frame-by-name)
+(global-set-key (kbd "s-a") 'select-frame-by-name)
 
 ;; Switch Buffers
 (global-set-key (kbd "s-b") 'counsel-switch-buffer)
 
+;; Goto line
+(global-set-key (kbd "s-g") 'goto-line)
+
+;; Yasnippet
+(setq my-yas-snippet-commit-types '("feat" "story" "fix" "refactor" "chore"))
+(defun my-yas-snippet-branch-name()
+  (s-capitalized-words (string-join (cdr (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")) " ")))
+(defun my-yas-snippet-feature-id ()
+  (car (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")))
 (provide 'my-custom)
 
 ;;; my-custom package ends here

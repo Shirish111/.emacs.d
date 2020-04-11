@@ -37,3 +37,9 @@ amx-items
 rake.cache
 /.persistent-scratch
 /eshell/lastdir
+/.last-package-update-day
+/forge-database.sqlite
+/projectile.cache
+/request/
+/var/
+eshell
