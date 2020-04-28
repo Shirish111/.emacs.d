@@ -43,3 +43,4 @@ rake.cache
 /request/
 /var/
 eshell
+templates

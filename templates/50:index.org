@@ -1,2 +1,0 @@
-#+TITLE: ${1:`(s-titleized-words (cadr (reverse (s-split "/" default-directory))))`}
-#+SETUPFILE: ~/my-emacs/org-templates/custom/default_header_options.org
