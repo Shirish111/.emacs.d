@@ -48,7 +48,7 @@ void f(int a, int b) {
   cout << \" a = \" << a << \" b = \" << b << \"\\n\";
   //... some code
 }"
-  (require 'ht)
+
   (interactive)
   (save-excursion
     (let ((my-cpp-line (my-cpp-fetch-func-params))

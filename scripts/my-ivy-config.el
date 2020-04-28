@@ -36,6 +36,7 @@
 	 ("<f1> l" . counsel-find-library)
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
+         ("s-r" . counsel-recentf)
          ;;("C-c c" . counsel-compile)
          ("s-f" . counsel-projectile-find-file)
 	 ("C-c g" . counsel-git)
@@ -100,6 +101,16 @@
   :ensure t
   :config
   (ivy-prescient-mode +1)
+  (add-to-list 'ivy-prescient-sort-commands 'counsel-recentf)
+  (setq ivy-prescient-retain-classic-highlighting t)
+  )
+
+(use-package company-prescient
+  :init
+  :demand t
+  :ensure t
+  :config
+  (company-prescient-mode +1)
   )
 
 (provide 'my-ivy-config)

@@ -33,13 +33,13 @@
 
 ;; tern
 ;; `NOTE' sudo npm -g install tern
-(use-package tern
-   :ensure t
-   :init (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
-   :config
-     (use-package company-tern
-        :ensure t
-        :init (add-to-list 'company-backends 'company-tern)))
+;; (use-package tern
+;;    :ensure t
+;;    :init (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+;;    :config
+;;      (use-package company-tern
+;;         :ensure t
+;;         :init (add-to-list 'company-backends 'company-tern)))
 
 ;; js2-refactor
 (use-package js2-refactor
@@ -53,10 +53,10 @@
    :init (add-hook 'js2-mode-hook 'skewer-mode))
 
 ;; Company tern
-(use-package company-tern
-  :ensure t
-  :init
-  (add-to-list 'company-backends 'company-tern))
+;; (use-package company-tern
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'company-backends 'company-tern))
 
 (use-package js-comint
   :ensure t)

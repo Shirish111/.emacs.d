@@ -2,6 +2,9 @@
 ;;; Commentary
 ;; The `my-common' package is used to load the common utilities
 
+(require 'warnings)
+(require 'ht)
+
 (use-package auto-package-update
   :ensure t
   :config
@@ -10,7 +13,6 @@
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
-
 ;;; Code
 ;; (use-package smex
 ;;   :init
@@ -131,7 +133,11 @@
   :ensure t
   :diminish yas-minor-mode
   :delight
-  :config (yas-global-mode 1))
+  :config
+  (yas-global-mode 1)
+  (setq yas-triggers-in-field t)
+  (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
+  )
 
 ;; Yasnippet snippets
 ;(use-package yasnippet-snippets
@@ -293,13 +299,13 @@
   :ensure t)
 
 ;; Diff Highlight
-(use-package diff-hl
-  :init
-  (global-diff-hl-mode)
-  :ensure t
-  :config
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  )
+;(use-package diff-hl
+;  :init
+;  (global-diff-hl-mode)
+;  :ensure t
+;  :config
+;  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+;  )
 
 ;; Power Thesaurus
 (use-package powerthesaurus
@@ -312,6 +318,23 @@
 
 ;; Inhibit Startup Screen
 (setq inhibit-startup-message t)
+
+;; Vterm
+(use-package vterm
+  :demand t
+  :ensure t)
+
+;; Dumb Jump
+(use-package dumb-jump
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go)
+         ("M-g b" . dumb-jump-back)
+         ("M-g i" . dumb-jump-go-prompt)
+         ("M-g x" . dumb-jump-go-prefer-external)
+         ("M-g z" . dumb-jump-go-prefer-external-other-window))
+  :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+  :demand t
+  :ensure t)
 
 (provide 'my-common)
 
