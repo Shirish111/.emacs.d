@@ -28,22 +28,23 @@
   :delight
   :ensure t
   :demand t
-  :bind (("M-s s" . swiper)
-	 ("M-x" . counsel-M-x)
-	 ("C-x C-f". counsel-find-file)
+  :bind (
+         ;("M-s s" . swiper)
+	 ;("C-x C-f". counsel-find-file)
 	 ("<f1> f" . counsel-describe-function)
 	 ("<f1> v" . counsel-describe-variable)
 	 ("<f1> l" . counsel-find-library)
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
-         ("s-r" . counsel-recentf)
+         ;("s-r" . counsel-recentf)
          ;;("C-c c" . counsel-compile)
-         ("s-f" . counsel-projectile-find-file)
-	 ("C-c g" . counsel-git)
-	 ("C-c j" . counsel-git-grep)
-	 ("s-g" . counsel-ag)
-	 ("C-x l" . counsel-locate)
-         ("C-<tab>" . counsel-company))
+         ;("s-f" . counsel-projectile-find-file)
+	 ;("C-c g" . counsel-git)
+	 ;("C-c j" . counsel-git-grep)
+	 ;("s-g" . counsel-ag)
+	 ;("C-x l" . counsel-locate)
+         ;("C-<tab>" . counsel-company)
+         )
   :config
   (setq ivy-initial-inputs-alist nil))
 
@@ -112,6 +113,41 @@
   :config
   (company-prescient-mode +1)
   )
+
+
+;; Helm
+(use-package helm
+  :init
+  :ensure t
+  :config
+  (setq helm-ff-skip-boring-files t)
+  :bind
+  ("M-x" . helm-M-x)
+  ("C-x C-f". helm-find-files)
+  )
+
+;; Helm Swoop
+(use-package helm-swoop
+  :init
+  :ensure t
+  :config
+  )
+
+;; Helm Projectile
+(use-package helm-projectile
+  :init
+  :ensure t
+  :config
+  )
+
+;; Helm Ag
+(use-package helm-ag
+  :init
+  :ensure t
+  :config
+  (setq helm-follow-mode-persistent t)
+  )
+
 
 (provide 'my-ivy-config)
 

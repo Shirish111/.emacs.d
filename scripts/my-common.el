@@ -336,6 +336,63 @@
   :demand t
   :ensure t)
 
+;; Evil Leader
+;; (use-package evil-leader
+;;   :init
+;;   :ensure t
+;;   :config
+;;   (global-evil-leader-mode)
+;;   (evil-leader/set-leader "<SPC>")
+;;   )
+
+;; Evil
+(use-package evil
+  :init
+  (setq evil-disable-insert-state-bindings t)
+  (setq evil-want-C-u-scroll t)
+  :ensure t
+  :config
+  (evil-mode t)
+  )
+
+;; Evil Surround
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
+;; General Keybindings
+(use-package general
+  :init
+  :ensure t
+  :config
+  )
+(general-create-definer my-leader-def
+  ;; :prefix my-leader
+  ;; or without a variable
+  :prefix "SPC")
+
+(my-leader-def
+  :keymaps 'normal
+  "x" 'helm-M-x
+  ;; File
+  "fs" 'save-buffer
+  "ff" 'helm-find-files
+  "fr" 'helm-recentf
+  "fl" 'helm-locate
+  ;; Buffer
+  "bf" 'switch-to-buffer
+  ;; Search
+  "sw" 'swiper
+  "ss" 'helm-swoop
+  ;; Project
+  "SPC" 'helm-projectile-find-file
+  "*" 'helm-projectile-ag
+  "pr" 'helm-projectile-recentf
+  ;; Git
+  "gs" 'magit-status
+  )
+
 (provide 'my-common)
 
 ;;; my-common.el ends here

@@ -70,7 +70,7 @@
 (global-hl-line-mode 1)
 
 ;; Switch frames
-(global-set-key (kbd "s-a") 'select-frame-by-name)
+;(global-set-key (kbd "s-a") 'select-frame-by-name)
 
 ;; Switch Buffers
 (global-set-key (kbd "s-b") 'counsel-switch-buffer)
