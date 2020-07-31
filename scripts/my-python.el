@@ -39,6 +39,8 @@
   :init (with-eval-after-load 'python (elpy-enable))
 
   :config
+  (define-key elpy-mode-map (kbd "C-<up>") nil)
+  (define-key elpy-mode-map (kbd "C-<down>") nil)
   (electric-indent-local-mode -1)
   (delete 'elpy-module-highlight-indentation elpy-modules)
   (delete 'elpy-module-flymake elpy-modules)

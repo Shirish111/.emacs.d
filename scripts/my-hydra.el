@@ -9,35 +9,6 @@
   :delight
   )
 
-;; Multiple Cursors
-(defhydra hydra-multiple-cursors (global-map "ESC m")
-  "
- Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
-------------------------------------------------------------------
- [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
- [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
- [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search      [_r_] Reverse Search
- [_S_] Mark all in region regexp
- [Click] Cursor at point       [_q_] Quit"
-  ("l" mc/edit-lines :exit t)
-  ("a" mc/mark-all-like-this :exit t)
-  ("n" mc/mark-next-like-this)
-  ("N" mc/skip-to-next-like-this)
-  ("M-n" mc/unmark-next-like-this)
-  ("p" mc/mark-previous-like-this)
-  ("P" mc/skip-to-previous-like-this)
-  ("M-p" mc/unmark-previous-like-this)
-  ("S" mc/mark-all-in-region-regexp :exit t)
-  ("s" phi-search :exit t)
-  ("r" phi-search-backward :exit t)
-  ("0" mc/insert-numbers :exit t)
-  ("A" mc/insert-letters :exit t)
-  ("<mouse-1>" mc/add-cursor-on-click)
-  ;; Help with click recognition in this hydra
-  ("<down-mouse-1>" ignore)
-  ("<drag-mouse-1>" ignore)
-  ("q" nil))
-
 ;; Java
 (defhydra hydra-meghanada (:hint nil :exit t)
 "
@@ -74,6 +45,29 @@ _q_: exit
 
   ("q" exit)
   ("z" nil "leave"))
+
+;; Rails Hydra
+(defhydra my-hydra-projectile-rails-find (:color blue :columns 8)
+      "Find a resources"
+      ("m" projectile-rails-find-model       "model")
+      ("v" projectile-rails-find-view        "view")
+      ("c" projectile-rails-find-controller  "controller")
+      ("j" my-projectile-rails-find-job      "job")
+      ("p" my-projectile-rails-find-policy   "policy")
+      ("h" projectile-rails-find-helper      "helper")
+      ("l" projectile-rails-find-lib         "lib")
+      ("d" (lambda ()(interactive) (projectile-rails-goto-file "config/database.yml")) "database.yml")
+      ("S" (lambda ()(interactive) (projectile-rails-goto-file "db/schema.rb")) "schema")
+      ("a" (lambda ()(interactive) (projectile-rails-goto-file "config/application.yml")) "application.yml")
+      ("e" (lambda ()(interactive) (projectile-rails-goto-file "config/initializers/00_custom_env.rb")) "Custom Env")
+      ("s" my-projectile-rails-find-service     "service")
+      ("i" projectile-rails-find-initializer "initializer")
+      ("g" projectile-rails-goto-gemfile     "Gemfile")
+      ("r" projectile-rails-goto-routes      "routes")
+      ("@" projectile-rails-find-mailer      "mailer"))
+
+(define-key projectile-rails-mode-map (kbd "s-r") 'my-hydra-projectile-rails-find/body)
+;(define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body)
 
 (provide 'my-hydra)
 

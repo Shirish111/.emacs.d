@@ -12,11 +12,16 @@
 (use-package my-ruby)
 (use-package my-python)
 (use-package my-java)
+(use-package my-html)
 (use-package my-js)
 (use-package my-hydra)
-;(use-package my-personal)
+;(use-package my-neotree)
+(use-package my-treemacs)
+(use-package my-eshell)
+(add-to-list 'load-path "~/my-emacs/scripts/emacs_custom")
+;(use-package my-dashboard)
+(use-package my-personal)
 
 (provide 'my-config)
 
 ;;; my-config package ends here
-

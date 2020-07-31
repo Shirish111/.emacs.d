@@ -58,7 +58,8 @@
 ;; Robe
 (use-package robe
   :ensure t
-  :bind ("C-M-." . robe-jump)
+  :bind (("C-M-." . robe-jump)
+         ("s-." . find-tag))
 
   :init
   (add-hook 'ruby-mode-hook 'robe-mode)
@@ -89,7 +90,31 @@
 (use-package projectile-rails
   :ensure t
   :init
-  (add-hook 'ruby-mode-hook (lambda () (projectile-rails-global-mode))))
+  (add-hook 'ruby-mode-hook (lambda () (projectile-rails-global-mode)))
+  :config
+  (defun projectile-rails-find-job ()
+    "Find a Job."
+    (interactive)
+    (projectile-rails-find-resource
+     "job: "
+     '(("app/jobs/" "\\(.+?\\)\\(_job\\)?\\.rb$"))
+     "app/jobs/${filename}_job.rb"))
+
+  (defun projectile-rails-find-policy ()
+    "Find a Policy."
+    (interactive)
+    (projectile-rails-find-resource
+     "policy: "
+     '(("app/policies/" "\\(.+?\\)\\(_policy\\)?\\.rb$"))
+     "app/jobs/${filename}_policy.rb"))
+  
+  (defun projectile-rails-find-service ()
+    "Find a Service."
+    (interactive)
+    (projectile-rails-find-resource
+     "service: "
+     '(("app/services/" "\\(.+?\\)\\(\\)?\\.rb$"))
+     "app/services/${filename}.rb")))
 
 (provide 'my-ruby)
 

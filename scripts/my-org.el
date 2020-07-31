@@ -5,10 +5,14 @@
 
 
 (use-package org
+  :init
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-bullets-mode)
+                             (auto-fill-mode t)))
   :defer t
   :ensure org-plus-contrib
   :config
-  
+  (define-key org-mode-map (kbd "C-'") nil)
   ;; (setq org-agenda-files '("/path/to/agenda.org"))
   ;; (setq org-default-notes-file "/path/to/notes.org")
 
@@ -18,6 +22,7 @@
   ;;                               ("t" "Todo" entry (file+headline "/path/to/todo.org" "TODO")
   ;;                              "* TODO %^{Item}\n** %^{Description}\n")
   ;;                               ))
+  (setq org-log-done 'time)
   (global-set-key (kbd "C-c c") 'org-capture)
   (use-package ox-twbs
     :ensure t
@@ -45,7 +50,7 @@
   (use-package htmlize
     :ensure t
     :demand t)
-  (add-hook 'before-save-hook (lambda () (when (eq major-mode 'org-mode) (org-publish-current-file))))
+  ;(add-hook 'before-save-hook (lambda () (when (eq major-mode 'org-mode) (save-excursion (org-publish-current-file)))))
   )
 
 (set-language-environment "UTF-8")
@@ -64,23 +69,27 @@
   :config
   (message "org babel-eval executed")
   :init
+  (use-package ob-restclient
+  :ensure t)
   (add-hook 'org-mode-hook   (lambda ()
 			       (org-babel-do-load-languages
 				'org-babel-load-languages
 				'(
 				  (python . t)
 				  (shell . t)
-				  (C . t)))
+				  (C . t)
+                                  (restclient . t)
+                                  (dot . t )
+                                  (latex . t)))
 			       ))
   :ensure t)
 
-(use-package org-journal
-  :init
-  :ensure t
-  :demand t
-  :config
-  ;;(setq org-journal-dir "/path/to/org-journal/")
-  (setq org-journal-date-format "%A, %d %B %Y"))
+;; (use-package org-journal
+;;   ;:ensure t
+;;   :demand t
+;;   :config
+;;   ;;(setq org-journal-dir "/path/to/org-journal/")
+;;   (setq org-journal-date-format "%A, %d %B %Y"))
 
 (provide 'my-org)
 

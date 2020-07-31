@@ -40,24 +40,50 @@
     (insert yank_content (find-file filepath))
     )
   )
-(add-hook 'c++-mode-hook (lambda () (define-key c++-mode-map (kbd "C-c m") 'my-make-dir)))
+(eval-after-load 'c++-mode '(define-key c++-mode-map (kbd "C-c m") 'my-make-dir))
 
 ;; Interactive Shell
-(setq shell-command-switch "-ic") ; Disable this for mac os
+(setq shell-command-switch "-c") ; Disable this for mac os
 
 
 ;; Keyboard macros
 ;; Document Ruby Class
-(fset 'my-ruby-document-class
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 19 99 108 97 115 115 return right 67108896 134217830 134217847 up 5 return tab 35 32 25] 0 "%d")) arg)))
+(fset 'my-ruby-document-class-or-module
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up 5 return 35 32 25] 0 "%d")) arg)))
 
-(add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class)))
+(add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class-or-module)))
 
 (fset 'my-swap-params
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\346\346\364\364\342\342\342\364\364" 0 "%d")) arg)))
 
 (global-set-key (kbd "M-s p") 'my-swap-params)
+(global-set-key (kbd "M-z") 'beginning-of-line-text)
 
+;; Copy Source Code Block
+(fset 'my-org-copy-src-block
+      (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([down 3 39 8388715 134217847 3 39] 0 "%d")) arg)))
+
+(add-hook 'org-mode-hook (lambda () (define-key org-mode-map (kbd "s-x") 'my-org-copy-src-block)))
+
+
+;; Highlight current line
+(global-hl-line-mode 1)
+
+;; Switch frames
+(global-set-key (kbd "s-a") 'select-frame-by-name)
+
+;; Switch Buffers
+(global-set-key (kbd "s-b") 'counsel-switch-buffer)
+
+;; Goto line
+(global-set-key (kbd "s-g") 'goto-line)
+
+;; Yasnippet
+(setq my-yas-snippet-commit-types '("feat" "story" "fix" "refactor" "chore"))
+(defun my-yas-snippet-branch-name()
+  (s-capitalized-words (string-join (cdr (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")) " ")))
+(defun my-yas-snippet-feature-id ()
+  (car (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")))
 (provide 'my-custom)
 
 ;;; my-custom package ends here
