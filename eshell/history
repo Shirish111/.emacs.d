@@ -1,0 +1,128 @@
+l
+ll
+ls
+ls
+cd
+ls
+ls .
+man ls
+ls -A
+which ls
+ls --color auto
+ls --color=auto
+ls --color=auto
+exit
+ls
+cd ~/Rails/api/mp-transaction-api/
+eb ssh viv-colending-worker-staging-01 --profile staging
+eb ssh viv-colending-worker-staging-01 --profile staging
+ls
+exit
+(+ 1 2 3)
+ls
+rails console
+ls
+bash -c "rails console"
+which ruby
+rails
+ff Gemfile
+cd ~/.rvm/bin
+ls
+cd ..
+ls
+find . | grep rails
+ls
+./gems/ruby-2.4.5/bin/rails
+/opt/rubies/ruby-2.6.5/bin/rails console
+exit
+(s-snake-case "Disburse API for Krazybee")
+(s-snake-case "Tenure and No. of Instalment differs - API Validation is needed")
+(s-snake-case "idfy BE integration")
+exit
+ls
+cd Emacs
+cd ..
+cd shell_files/
+ls
+cd Emacs
+ls
+cat a
+cat A
+rm a
+ls
+cat a
+rm A
+cat a
+cat A
+ls
+rm -f A
+ls
+cat A
+cat a
+rm a
+ls
+rm a
+ls
+ls
+cat a
+cat A
+exit
+s-snake-case "InvestorAgreement"
+(s-snake-case "Accepted older due dates than disbursal date")
+(s-snake-case "Unable to send Delete Loan Request, Loans are not getting deleted.")
+(s-snake-case "\"Value of Loans\" in loan book displays incorrect value")
+(s-upper-camel-case "Count Negative Numbers in a Sorted Matrix")
+(* 15 0.0625)
+(+ (/ 1 4) (/ 1 16))
+(+ (/ 1 4.0) (/ 1 16.0))
+(3/8.0)
+(/ 3 8.0)
+(* 0.5 0.375 .25)
+(+ 0.5 (/ 1 8.0) (/ 1 16.0))
+(/ 5.0 32)
+(- 1 (/ 5.0 32))
+(pow 2 10)
+(exp 2 10)
+(s-snake-case "Sync product configurations across environment")
+(s-snake-case "Error in fetching loans")
+(s-snake-case "Monthly Invoice Tracker")
+(s-snake-case "Servicer fee calculation BE")
+(/ 1.0 16)
+(s-snake-case " POST create Loan")
+(s-snake-case "Finwego & Upmoney > IDFY verification for PAN is not working")
+(s-snake-case "Introduce name for agreements")
+(s-snake-case "ES Handle Prepayment  Collection")
+tm
+ls 
+find-file b.py
+cat b.py
+find-file b.py
+cat b.py
+ssh -i ~/.ssh/stg-colending-ebstalk-keypair.pem ec2-user@10.201.17.139
+ls
+clear
+ls
+cd /ssh:ec2-user@10.201.17.139
+cd /sshx:ec2-user@10.201.17.139
+cd /sshx:ec2-user@10.201.17.139:/home
+cd /sshx:sa/home/ec2-user
+cd /sshx:sa/home/ec2-user
+cd /ssh:sa|sudo:root@sa:/
+cd /ssh:sa:/
+ls
+sudo su
+ls
+sudo sucd /var/app/current;rails console
+sudo su
+cd var/app/current
+ls
+rails console
+cd log
+ls
+find-file staging.log
+ls
+cd ..
+ls
+which rails
+ls
+exit
