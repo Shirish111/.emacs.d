@@ -1,128 +1,128 @@
-l
-ll
-ls
-ls
-cd
-ls
-ls .
-man ls
-ls -A
-which ls
-ls --color auto
-ls --color=auto
-ls --color=auto
 exit
 ls
-cd ~/Rails/api/mp-transaction-api/
-eb ssh viv-colending-worker-staging-01 --profile staging
-eb ssh viv-colending-worker-staging-01 --profile staging
+ff config.ru
+ssh -i ~/.ssh/stg-colending-ebstalk-keypair.pem ec2-user@10.200.16.241
+ssh -vvv -i ~/.ssh/stg-colending-ebstalk-keypair.pem ec2-user@10.200.16.241
+ssh -vvv -i ~/.ssh/stg-colending-ebstalk-keypair.pem ec2-user@10.200.16.241
+ssh -i ~/.ssh/int-colending-ebstalk-keypair.pem ec2-user@10.200.16.241
+clear
+clear
+pageup
 ls
-exit
-(+ 1 2 3)
+ls --color=auto
+cd /ssh:qa:/home/ec2-user
+ls
+sudo sucd /var/app/current;rails console
+ls
+cd /var/app/current
+ls
+sudo su
+cd ~
+cd /ssh:qa|sudo:root@qa:/
+cd /ssh:qa|sudo:root@qa:/home/ec2-user
+cd /ssh:qa\|sudo:root@qa:/home/ec2-user
+cd /var/app/current
+ls
+cd ..
+cd ..
+cd var
+cd app
+cd current
 ls
 rails console
+which rails
+exit
 ls
-bash -c "rails console"
-which ruby
-rails
-ff Gemfile
-cd ~/.rvm/bin
+cd /sshx:sa:/var/app/current/log
+ls
+ff staging.log
+ls
+ls
+rails c
+/Users/shrishkumarsahadeo/.rvm/gems/ruby-2.6.3/bin/rails c
+which rails
 ls
 cd ..
 ls
-find . | grep rails
+cd app/controllers/concerns/viv_colending_api/
 ls
-./gems/ruby-2.4.5/bin/rails
-/opt/rubies/ruby-2.6.5/bin/rails console
+ff client_secured.rb
+crontab -e
+ls
+crontab -e
+crontab -l
+crontab-e
+sudo su
+ls
+cd 
+cd /sshx:sa|sudo:root@sa:/var/app/current
+cd /ssh:sa|sudo:root@sa:/var/app/current
+cd /sshx:sa:/var/app/current/log
+sudo su
+ls
+pwd
+bash
+cd
+cdco
+man ls
+woman ls
+which ls
+which *ls
+/bin/ls
+ls
+ls
+which sudo
+which *ls
+which *sudo
+vi a.c
+vi a.c
+vim a.c
+vim a.c
+vim a.c
+which rails
+cd /ssh:qa:/
+ls
+cd /var/app/current
+ls
+rails c
+ls
+cd var/app/current
+ls
+rails c
+/Users/shrishkumarsahadeo/.rvm/gems/ruby-2.6.3/bin/rails c
+which rails
+ls
+/opt/rubies/ruby-2.6.6/bin/rails c
+cd
+cdco
+cd Rails/api/viv-colending-api/
+ls
+rails c
+rails c
+rails c
+ls
+ff Rakefile
 exit
-(s-snake-case "Disburse API for Krazybee")
-(s-snake-case "Tenure and No. of Instalment differs - API Validation is needed")
-(s-snake-case "idfy BE integration")
-exit
 ls
-cd Emacs
-cd ..
-cd shell_files/
-ls
-cd Emacs
-ls
-cat a
-cat A
-rm a
-ls
-cat a
-rm A
-cat a
-cat A
-ls
-rm -f A
-ls
-cat A
-cat a
-rm a
-ls
-rm a
-ls
-ls
-cat a
-cat A
-exit
-s-snake-case "InvestorAgreement"
-(s-snake-case "Accepted older due dates than disbursal date")
-(s-snake-case "Unable to send Delete Loan Request, Loans are not getting deleted.")
-(s-snake-case "\"Value of Loans\" in loan book displays incorrect value")
-(s-upper-camel-case "Count Negative Numbers in a Sorted Matrix")
-(* 15 0.0625)
-(+ (/ 1 4) (/ 1 16))
-(+ (/ 1 4.0) (/ 1 16.0))
-(3/8.0)
-(/ 3 8.0)
-(* 0.5 0.375 .25)
-(+ 0.5 (/ 1 8.0) (/ 1 16.0))
-(/ 5.0 32)
-(- 1 (/ 5.0 32))
-(pow 2 10)
-(exp 2 10)
-(s-snake-case "Sync product configurations across environment")
-(s-snake-case "Error in fetching loans")
-(s-snake-case "Monthly Invoice Tracker")
-(s-snake-case "Servicer fee calculation BE")
-(/ 1.0 16)
-(s-snake-case " POST create Loan")
-(s-snake-case "Finwego & Upmoney > IDFY verification for PAN is not working")
-(s-snake-case "Introduce name for agreements")
-(s-snake-case "ES Handle Prepayment  Collection")
-tm
-ls 
-find-file b.py
-cat b.py
-find-file b.py
-cat b.py
-ssh -i ~/.ssh/stg-colending-ebstalk-keypair.pem ec2-user@10.201.17.139
 ls
 clear
 ls
-cd /ssh:ec2-user@10.201.17.139
-cd /sshx:ec2-user@10.201.17.139
-cd /sshx:ec2-user@10.201.17.139:/home
-cd /sshx:sa/home/ec2-user
-cd /sshx:sa/home/ec2-user
-cd /ssh:sa|sudo:root@sa:/
-cd /ssh:sa:/
-ls
-sudo su
-ls
-sudo sucd /var/app/current;rails console
-sudo su
-cd var/app/current
-ls
-rails console
-cd log
-ls
-find-file staging.log
+cdco
 ls
 cd ..
 ls
+cd ..
+ls
+rails c
+ls
 which rails
+rails console
+rails -h
+ls
+rails console
+rails c
 ls
 exit
+(s-snake-case "Smartcoin API docs and preprod setup")
+ps -eaf
+pkill 12564

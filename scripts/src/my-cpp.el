@@ -106,4 +106,3 @@ void f(int a, int b) {
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here
-

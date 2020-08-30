@@ -1,3 +1,7 @@
+#+TITLE: Config
+#+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+#+begin_src elisp
 ;;; my-config.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
@@ -6,7 +10,7 @@
 (use-package my-theme)
 (use-package my-common)
 (use-package my-custom)
-(use-package my-ivy-config)
+(use-package my-ivy)
 (use-package my-org)
 (use-package my-cpp)
 (use-package my-ruby)
@@ -25,3 +29,5 @@
 (provide 'my-config)
 
 ;;; my-config package ends here
+
+#+end_src

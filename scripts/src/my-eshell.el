@@ -1,12 +1,20 @@
 ;;; my-eshell.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
-
 ;; The `my-eshell' package is used to load the required configuration
 
 ;; (setq eshell-prompt-function
 ;;   (lambda ()
 ;;     (concat (user-login-name) (s-replace "Directory " " " (pwd))
 ;;       (if (= (user-uid) 0) " # " " \n$ "))))
+
+;; Set up the Correct Path
+;; (setenv "PATH"
+;;         (concat
+;;          "/usr/local/bin:/usr/local/sbin:"
+;;          (getenv "PATH")))
+
+;;Pager Setup
+(setenv "PAGER" "cat")
 
 
 (use-package esh-help
@@ -44,8 +52,8 @@
       (lambda ()
               "A simple prompt."
               (concat
-               (propertize (concat (user-login-name) " ") 'face `(:foreground "green"))
-               (propertize (concat (eshell/pwd) " \n$ ") 'face `(:foreground "white"))
+               (propertize (concat "shirish@ ") 'face `(:foreground "orange"))
+               (propertize (concat (eshell/pwd) "$: ") 'face `(:foreground "orange"))
               )))
 
 ;; Bash Aliases
@@ -54,7 +62,11 @@
 ;;   :config
 ;;   (setq load-bash-alias-bashrc-file "/home/shirish/.bash_it/aliases/custom.aliases.bash"))
 
+(defun crontab-e ()
+    "Run `crontab -e' in a emacs buffer."
+    (interactive)
+    (with-editor-async-shell-command "crontab -e"))
+
 (provide 'my-eshell)
 
 ;;; my-eshell package ends here
-

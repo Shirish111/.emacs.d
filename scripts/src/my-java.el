@@ -47,4 +47,3 @@
 (provide 'my-java)
 
 ;;; my-java package ends here
-

@@ -1,3 +1,8 @@
+#+TITLE: HTML
+#+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+
+#+begin_src elisp
 ;;; my-html.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
@@ -43,3 +48,4 @@
 
 ;;; my-html package ends here
 
+#+end_src

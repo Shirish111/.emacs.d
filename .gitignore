@@ -48,3 +48,5 @@ org-journal.cache
 /.lsp-session-v1
 /.persistent-scratch
 /.python-environments/
+annotations
+network-security.data

@@ -1,3 +1,8 @@
+#+TITLE: Hydra
+#+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+
+#+begin_src elisp
 ;;; my-hydra.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
@@ -66,9 +71,11 @@ _q_: exit
       ("r" projectile-rails-goto-routes      "routes")
       ("@" projectile-rails-find-mailer      "mailer"))
 
-(define-key projectile-rails-mode-map (kbd "s-r") 'my-hydra-projectile-rails-find/body)
+;(define-key projectile-rails-mode-map (kbd "s-r") 'my-hydra-projectile-rails-find/body)
 ;(define-key projectile-rails-mode-map (kbd "s-r") 'hydra-projectile-rails/body)
 
 (provide 'my-hydra)
 
 ;;; my-hydra package ends here
+
+#+end_src

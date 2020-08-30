@@ -1,8 +1,11 @@
+#+TITLE: JS
+#+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+#+begin_src elisp
 ;;; my-js.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-js' package is used to load the required configuration
-
 ;; Js2-mode
 (use-package js2-mode
   :ensure t
@@ -65,3 +68,4 @@
 
 ;;; my-js package ends here
 
+#+end_src

@@ -1,7 +1,7 @@
-;;; my-ivy-config.el --- Configuration to be loaded while starting emacs
+;;; my-ivy.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
-;; The `my-ivy-config' package is used to load the required configuration
+;; The `my-ivy' package is used to load the required configuration
 
 ;; Ivy Mode
 (use-package ivy
@@ -10,18 +10,19 @@
   :demand t
   :config (progn
 	    (ivy-mode 1)
+            (setq ivy-height 30)
 	    (setq ivy-use-virtual-buffers t)
 	    (setq ivy-count-format "(%d/%d) ")
             (setq ivy-extra-directories ()))
   :bind (("C-c C-r" . ivy-resume)))
 
-(setq ivy-re-builders-alist
-      '((read-file-name-internal . ivy--regex-ignore-order)
-        (counsel-M-x . ivy--regex-ignore-order)
-        (counsel-projectile-find-file . ivy--regex-ignore-order)
-        (ivy-switch-buffer . ivy--regex-ignore-order)
-        (projectile-completing-read . ivy--regex-ignore-order)
-        (t . ivy--regex-ignore-order)))
+  (setq ivy-re-builders-alist
+  '((read-file-name-internal . ivy--regex-ignore-order)
+  (counsel-M-x . ivy--regex-ignore-order)
+  (counsel-projectile-find-file . ivy--regex-ignore-order)
+  (ivy-switch-buffer . ivy--regex-ignore-order)
+  (projectile-completing-read . ivy--regex-ignore-order)
+  (t . ivy--regex-ignore-order)))
 
 ;; Counsel
 (use-package counsel
@@ -29,19 +30,20 @@
   :ensure t
   :demand t
   :bind (
-         ;("M-s s" . swiper)
-	 ;("C-x C-f". counsel-find-file)
+         ("M-x" . counsel-M-x)
+         ("M-s s" . swiper)
+	 ("C-x C-f". counsel-find-file)
 	 ("<f1> f" . counsel-describe-function)
 	 ("<f1> v" . counsel-describe-variable)
 	 ("<f1> l" . counsel-find-library)
 	 ("<f2> i" . counsel-info-lookup-symbol)
 	 ("<f2> u" . counsel-unicode-char)
-         ;("s-r" . counsel-recentf)
+         ("s-r" . counsel-recentf)
          ;;("C-c c" . counsel-compile)
-         ;("s-f" . counsel-projectile-find-file)
+         ("s-f" . counsel-projectile-find-file)
 	 ;("C-c g" . counsel-git)
 	 ;("C-c j" . counsel-git-grep)
-	 ;("s-g" . counsel-ag)
+	 ("s-g" . counsel-ag)
 	 ;("C-x l" . counsel-locate)
          ;("C-<tab>" . counsel-company)
          )
@@ -122,8 +124,8 @@
   :config
   (setq helm-ff-skip-boring-files t)
   :bind
-  ("M-x" . helm-M-x)
-  ("C-x C-f". helm-find-files)
+  ;("M-x" . helm-M-x)
+  ;("C-x C-f". helm-find-files)
   )
 
 ;; Helm Swoop
@@ -149,6 +151,6 @@
   )
 
 
-(provide 'my-ivy-config)
+(provide 'my-ivy)
 
-;;; my-ivy-config package ends here
+;;; my-ivy package ends here

@@ -1,43 +1,6 @@
-;;; my-common.el-- - Common Utitlies
-;;; Commentary
-;; The `my-common' package is used to load the common utilities
-
 (require 'warnings)
 (require 'ht)
-
-(use-package auto-package-update
-  :ensure t
-  :config
-  (setq auto-package-update-prompt-before-update t)
-
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe))
-;;; Code
-;; (use-package smex
-;;   :init
-;;   :ensure t
-;;   :demand t
-;;   :config
-;;   (smex-initialize))
-
-;; Diminish and Delight
-(use-package diminish
-  :ensure t)
-(use-package delight
-  :ensure t)
-
-;; Yes or No
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; show paren mode
-(show-paren-mode t)
-
-;; pending delete
-(pending-delete-mode 1)
-
-;; Display time
-(display-time-mode t)
+(regexp-quote "#+PROPERTY: header-args :tangle ../src/")
 
 ;; Rainbow Delimiters
 (use-package rainbow-delimiters
@@ -51,11 +14,6 @@
   :bind(("C-;" . er/expand-region))
   :after (org))
   
-
-;; ;; Smex
-;; (use-package smex
-;;   :ensure t)
-
 ;; Multiple Cursors
 (use-package multiple-cursors
   :delight
@@ -121,6 +79,10 @@
     (push 'company-robe company-backends))
   :diminish company-mode)
 
+(use-package company-box
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
 ;; Company Quickhelp
 (use-package company-quickhelp          ; Documentation popups for Company
   :ensure t
@@ -137,6 +99,9 @@
   (yas-global-mode 1)
   (setq yas-triggers-in-field t)
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
+  :bind (
+         ("s-i" . yas-insert-snippet)
+         )
   )
 
 ;; Yasnippet snippets
@@ -175,10 +140,6 @@
         recentf-auto-cleanup 'never)
   (recentf-mode 1)
   :bind (("C-x C-r" . recentf-open-files)))
-
-;; Bookmarks
-;(global-set-key (kbd "C-'") 'bookmark-bmenu-list)
-;(global-set-key (kbd "C-\"") 'bookmark-set)
 
 ;; Backup Files
 (defvar --backup-directory (concat user-emacs-directory "backups"))
@@ -349,50 +310,160 @@
 (use-package evil
   :init
   (setq evil-disable-insert-state-bindings t)
+  ;;(defalias 'evil-insert-state 'evil-emacs-state)
+  (setq evil-default-state 'emacs)
   (setq evil-want-C-u-scroll t)
+  (setq evil-normal-state-cursor '(box "orange"))
+  (setq evil-emacs-state-cursor '(box "white"))
   :ensure t
   :config
   (evil-mode t)
   )
+(eval-after-load 'evil-core
+  '(evil-set-initial-state 'magit-popup-mode 'emacs))
+(eval-after-load 'evil-core
+  '(evil-set-initial-state 'shell-mode 'emacs))
 
-;; Evil Surround
-(use-package evil-surround
-  :ensure t
-  :config
-  (global-evil-surround-mode 1))
+(defadvice evil-insert-state (around emacs-state-instead-of-insert-state activate)
+  (evil-emacs-state))
+(define-key evil-emacs-state-map (kbd "<backtab>") 'evil-normal-state)
+;; ;; Evil Surround
+;; (use-package evil-surround
+;;   :ensure t
+;;   :config
+;;   (global-evil-surround-mode 1))
 
 ;; General Keybindings
 (use-package general
   :init
   :ensure t
   :config
+  (general-swap-key nil 'motion
+  ";" ":")
   )
 (general-create-definer my-leader-def
   ;; :prefix my-leader
-  ;; or without a variable
   :prefix "SPC")
 
 (my-leader-def
   :keymaps 'normal
-  "x" 'helm-M-x
-  ;; File
-  "fs" 'save-buffer
-  "ff" 'helm-find-files
-  "fr" 'helm-recentf
-  "fl" 'helm-locate
-  ;; Buffer
-  "bf" 'switch-to-buffer
-  ;; Search
-  "sw" 'swiper
-  "ss" 'helm-swoop
-  ;; Project
-  "SPC" 'helm-projectile-find-file
-  "*" 'helm-projectile-ag
-  "pr" 'helm-projectile-recentf
-  ;; Git
-  "gs" 'magit-status
   )
 
-(provide 'my-common)
+(my-leader-def
+  :keymaps 'visual
+  "c" 'comment-dwim)
 
-;;; my-common.el ends here
+(use-package annotate
+  :init
+  :ensure t
+  :config
+  (global-set-key (kbd "s-\\") 'annotate-mode)
+  )
+
+(use-package itail
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package highlight-indent-guides
+  :init
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  :ensure t
+  :config
+  )
+
+(use-package paradox
+  :init
+  :ensure t
+  :config
+  (paradox-enable)
+  )
+
+(use-package calfw
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package calfw-org
+  :init
+  :ensure t
+  :config
+  (global-set-key (kbd "s-/") 'cfw:open-org-calendar)
+  )
+
+(use-package calfw-cal
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package calfw-ical
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package ace-jump-mode
+  :init
+  :ensure t
+  :config
+  )
+(use-package shx
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package visual-regexp-steroids
+  :init
+  :ensure t
+  :config
+  )
+
+(use-package prodigy
+  :init
+  :ensure t
+  :config
+  (setq prodigy-services nil)
+  (prodigy-define-service
+    :name "Rails server Development"
+    :command "rails"
+    :args '("server")
+    :cwd "~/Rails/api/viv-colending-api"
+    :tags '(work)
+    :stop-signal 'sigint
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Rails server QA"
+    :command "rails"
+    :args '("server" "-e" "qa")
+    :cwd "~/Rails/api/viv-colending-api"
+    :tags '(work)
+    :stop-signal 'sigint
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Rails server Staging"
+    :command "rails"
+    :args '("server" "-e" "staging")
+    :cwd "~/Rails/api/viv-colending-api"
+    :tags '(work)
+    :stop-signal 'sigint
+    :kill-process-buffer-on-stop t)
+  (prodigy-define-service
+    :name "Rails server Production"
+    :command "rails"
+    :args '("server" "-e" "production")
+    :cwd "~/Rails/api/viv-colending-api"
+    :tags '(work)
+    :stop-signal 'sigint
+    :kill-process-buffer-on-stop t)
+  )
+
+(use-package vdiff
+  :init
+  :ensure t
+  :config
+  (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
+  )

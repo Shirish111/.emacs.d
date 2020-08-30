@@ -92,4 +92,3 @@
 (provide 'my-treemacs)
 
 ;;; my-treemacs package ends here
-

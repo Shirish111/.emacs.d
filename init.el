@@ -16,7 +16,7 @@
 (eval-when-compile
   (require 'use-package))
 
-(add-to-list 'load-path "~/my-emacs/scripts")
+(add-to-list 'load-path "~/my-emacs/scripts/src")
 (use-package my-config)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

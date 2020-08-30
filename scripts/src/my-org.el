@@ -72,16 +72,16 @@
   (use-package ob-restclient
   :ensure t)
   (add-hook 'org-mode-hook   (lambda ()
-			       (org-babel-do-load-languages
-				'org-babel-load-languages
-				'(
-				  (python . t)
-				  (shell . t)
-				  (C . t)
+                               (org-babel-do-load-languages
+                                'org-babel-load-languages
+                                '(
+                                  (python . t)
+                                  (shell . t)
+                                  (C . t)
                                   (restclient . t)
                                   (dot . t )
                                   (latex . t)))
-			       ))
+                               ))
   :ensure t)
 
 ;; (use-package org-journal
@@ -90,6 +90,12 @@
 ;;   :config
 ;;   ;;(setq org-journal-dir "/path/to/org-journal/")
 ;;   (setq org-journal-date-format "%A, %d %B %Y"))
+
+;; Tangle All Source Blocks
+(defun my-tangle-emacs-config()
+  (interactive)
+  (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/org" "org"))
+)
 
 (provide 'my-org)
 
