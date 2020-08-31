@@ -1,11 +1,15 @@
 #+TITLE: My Dashboard
 #+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-dashboard.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-dashboard' package is used to load the required configuration
-
+#+end_src
+* Dashboard
+#+begin_src elisp
 ;; Dashboard
 (use-package dashboard
   :ensure t
@@ -25,7 +29,9 @@
   (setq dashboard-set-footer nil)
   (setq dashboard-center-content nil))
 
-
+#+end_src
+* Package End
+#+begin_src elisp
 
 (provide 'my-dashboard)
 

@@ -1,14 +1,15 @@
 #+TITLE: Custom
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
-
+* Package Initialization
 #+begin_src elisp
-;;; my-custom.el-- - Common Utitlies
-;;; Commentary
-;; The `my-custom' package is used to load the common utilities
-
+  ;;; my-custom.el-- - Common Utitlies
+  ;;; Commentary
+  ;; The `my-custom' package is used to load the common utilities
+#+end_src
+* Navigation
+#+begin_src elisp
   ;; Navigation
-
   (global-set-key (kbd "C-<up>") '(lambda () (interactive) (next-line -4)))
 
   (global-set-key (kbd "C-<down>") '(lambda () (interactive) (next-line 4)))
@@ -34,7 +35,9 @@
   (global-set-key (kbd "C-l") '(lambda() (interactive) (copy-region-as-kill (line-beginning-position) (line-end-position)) (message "Line Copied")))
   (global-set-key (kbd "s-c") '(lambda() (interactive) (copy-region-as-kill (beginning-of-buffer) (end-of-buffer) (message "Copied Buffer"))))
   (global-set-key (kbd "s-k") '(lambda() (interactive) (mark-whole-buffer) (kill-region (region-beginning) (region-end)) (message "Cut Buffer")))
-
+#+end_src
+* Copy filename
+#+begin_src elisp
   ;; Copy filename
   (defun my-copy-file-name-to-clipboard ()
     "Copy the current buffer file name to the clipboard."
@@ -46,14 +49,19 @@
         (kill-new filename)
         (message "Copied buffer file name '%s' to the clipboard." filename))))
   (global-set-key (kbd "C-c C-f") 'my-copy-file-name-to-clipboard)
-
+#+end_src
+* Kill whole line
+#+begin_src elisp
   ;; Kill Whole line
   (global-set-key (kbd "C--") '(lambda () (interactive) (kill-whole-line)))
-
+#+end_src
+* Copy whole line
+#+begin_src elisp
   ;; Copy Whole line
   (global-set-key (kbd "M-z") '(lambda () (interactive) (kill-ring-save (line-beginning-position) (line-end-position))))
-
-
+#+end_src
+* Make Directory for Leetcode
+#+begin_src elisp
   ;; Make Directory
   (defun my-make-dir ()
     "My Make directory"
@@ -66,23 +74,26 @@
       )
     )
   (eval-after-load 'c++-mode '(define-key c++-mode-map (kbd "C-c m") 'my-make-dir))
-
+#+end_src
+* Interactive Shell
+#+begin_src elisp
   ;; Interactive Shell
   (setq shell-command-switch "-c") ; Disable this for mac os
-
-
+#+end_src
+* Keyboard Macros
+#+begin_src elisp
   ;; Keyboard macros
   ;; Document Ruby Class
   (fset 'my-ruby-document-class-or-module
-     (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up 5 return 35 32 25] 0 "%d")) arg)))
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([1 134217830 right 67108896 134217830 134217847 up 5 return 35 32 25] 0 "%d")) arg)))
 
   (add-hook 'ruby-mode-hook (lambda () (define-key ruby-mode-map (kbd "C-c d") 'my-ruby-document-class-or-module)))
 
   (fset 'my-swap-params
-     (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\346\346\364\364\342\342\342\364\364" 0 "%d")) arg)))
+        (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("\346\346\364\364\342\342\342\364\364" 0 "%d")) arg)))
 
   (global-set-key (kbd "M-s p") 'my-swap-params)
-  ;(global-set-key (kbd "M-z") 'beginning-of-line-text)
+                                          ;(global-set-key (kbd "M-z") 'beginning-of-line-text)
 
   ;; Copy Source Code Block
   (fset 'my-org-copy-src-block
@@ -90,30 +101,52 @@
 
   (add-hook 'org-mode-hook (lambda () (define-key org-mode-map (kbd "s-x") 'my-org-copy-src-block)))
 
+#+end_src
+* Comint Kill Subjob
+#+begin_src elisp
   (add-hook 'shell-mode-hook (lambda () (define-key shell-mode-map (kbd "C-c C-k") 'comint-kill-subjob)))
-
+#+end_src
+* Highlight current line
+#+begin_src elisp
   ;; Highlight current line
-  ;(global-hl-line-mode t)
-
-
-
-
+  ;;(global-hl-line-mode t)
+#+end_src
+* Pending Delete Mode
+#+begin_src elisp
+  (pending-delete-mode t)
+#+end_src
+* Switching Buffers
+#+begin_src elisp
   ;; Switch Buffers
   (global-set-key (kbd "s-b") 'counsel-switch-buffer)
-
+#+end_src
+* Goto Line
+#+begin_src elisp :tangle no
   ;; Goto line
   (global-set-key (kbd "s-g") 'goto-line)
-
+#+end_src
+* Yes No alias
+#+begin_src elisp :tangle no
+  ;; Yes No alias
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+* Yasnippet
+#+begin_src elisp :tangle no
   ;; Yasnippet
   (setq my-yas-snippet-commit-types '("feat" "story" "fix" "refactor" "chore"))
-  (setq my-yas-snippet-email-names '("Ram" "Maniteja" "Dharmesh" "Archana" "Vivek" "Prathamesh" "Ramya" "Shankar" "Vamshi" "Srishti" "Rama" "Keval"))
+  (setq my-yas-snippet-email-names '("Ram" "Maniteja" "Dharmesh" "Jinto" "Shiva" "Archana" "Vivek" "Prathamesh" "Ramya" "Shankar" "Vamshi" "Srishti" "Rama" "Keval"))
   (setq my-yas-snippet-environment-names '("production" "staging" "QA" "integration"))
   (setq my-yas-snippet-email-ending "Regards
-  Shirishkumar Togarla")
+    Shirishkumar Togarla")
 
   (defun my-yas-snippet-branch-name()
     (s-capitalized-words (string-join (cdr (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")) " ")))
   (defun my-yas-snippet-feature-id ()
     (car (split-string (cadr (split-string (magit-get-current-branch) "/")) "_")))
-(provide 'my-custom)
+#+end_src
+* Package End
+#+begin_src elisp :tangle no
+  (provide 'my-custom)
+
+;;; my-custom package ends here
 #+end_src

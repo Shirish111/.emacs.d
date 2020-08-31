@@ -1,26 +1,47 @@
 #+TITLE: Common
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-common.el-- - Common Utitlies
 ;;; Commentary
 ;; The `my-common' package is used to load the common utilities
-
+#+end_src
+* Warnings
+#+begin_src elisp :tangle no
 (require 'warnings)
-(require 'ht)
+#+end_src
+* Require Libraries
+  - Hash Table library
+    #+begin_src elisp
+      ;; Hash Library
+      (use-package ht
+        :init
+        :demand t
+        :ensure t)
 
-;; Rainbow Delimiters
-(use-package rainbow-delimiters
-  :ensure t
-  :delight)
-
-;; Expand Region
-(use-package expand-region
-  :ensure t
-  :delight
-  :bind(("C-;" . er/expand-region))
-  :after (org))
-  
+    #+end_src
+* Parentheses Highlight
+#+begin_src elisp
+  ;; Rainbow Delimiters
+  (use-package rainbow-delimiters
+    :hook (prog-mode . rainbow-delimiters-mode)
+    :ensure t
+    :delight
+    :config
+    )
+#+end_src
+* Expand Region
+#+begin_src elisp
+  ;; Expand Region
+  (use-package expand-region
+    :ensure t
+    :delight
+    :bind(("C-;" . er/expand-region))
+    :after (org))
+  #+end_src
+* Multiple Cursors  
+  #+begin_src elisp
 ;; Multiple Cursors
 (use-package multiple-cursors
   :delight
@@ -34,14 +55,18 @@
          ("C-)" . mc/edit-lines)
          ("<s-mouse-1>" . mc/add-cursor-on-click)
          ))
-
-;;Which key
+#+end_src
+* Which key
+#+begin_src elisp
+;; Which key
 (use-package which-key
   :ensure t
   :demand t
   :delight
   :config(which-key-mode 1))
-
+#+end_src
+* Smartparens
+#+begin_src elisp
 ;; Smartparens
 (use-package smartparens
   :delight smartparens-mode
@@ -54,21 +79,30 @@
 	    (setq-default sp-escape-quotes-after-insert nil)
             (sp-local-pair '(c++-mode ruby-mode java-mode python-mode) "'" "'"))
   :bind (("C-c r" . sp-rewrap-sexp)))
-
+#+end_src
+* Avy
+  Jump to any character by using s-l
+#+begin_src elisp
 ;; Avy
 (use-package avy
   :delight
   :ensure t
   :demand t
   :bind (("s-l" . 'avy-goto-char)))
-
+#+end_src
+* Move Text
+  Move lines using M-up and M-down
+#+begin_src elisp
 ;; Move Text
 (use-package move-text
   :demand t
   :ensure t
   :delight
   :init (move-text-default-bindings))
-
+#+end_src
+* Company
+  Completion engine
+#+begin_src elisp
 ;; Company
 (use-package company
   :ensure t
@@ -85,18 +119,27 @@
     (setq company-dabbrev-downcase nil)
     (push 'company-robe company-backends))
   :diminish company-mode)
-
+#+end_src
+* Company Box
+  Company completion with icons
+#+begin_src elisp
 (use-package company-box
   :ensure t
   :hook (company-mode . company-box-mode))
-
+#+end_src
+* Company Quickhelp
+  Documentation popups
+#+begin_src elisp
 ;; Company Quickhelp
 (use-package company-quickhelp          ; Documentation popups for Company
   :ensure t
   :delight
   :defer t
   :init (add-hook 'global-company-mode-hook #'company-quickhelp-mode))
-
+#+end_src
+* Yasnippet
+  Snippet Expansion
+#+begin_src elisp
 ;; Yasnippet
 (use-package yasnippet
   :ensure t
@@ -110,370 +153,478 @@
          ("s-i" . yas-insert-snippet)
          )
   )
-
+#+end_src
+* Yasnippet snippets
+  Collection of commonly used snippets
+#+begin_src elisp :tangle no
 ;; Yasnippet snippets
-;(use-package yasnippet-snippets
-;    :ensure t)
+  (use-package yasnippet-snippets
+     :ensure t)
+#+end_src
+* Flycheck
+  On the fly get code suggestions
+#+begin_src elisp
+  ;; Flycheck
+  (use-package flycheck
+    :delight
+    :ensure t
+    :commands flycheck-mode
+    :init
+    (add-hook 'c++-mode-hook 'flycheck-mode)
+    (add-hook 'c-mode-hook 'flycheck-mode)
+    (add-hook 'ruby-mode-hook 'flycheck-mode))
+#+end_src
+* Magit
+  For git UI
+#+begin_src elisp
+  ;; Magit
+  (use-package magit
+    :ensure t
+    :delight
+    :bind (("C-x g" . magit-status)))
+#+end_src
+* Forge
+  For Github integration with magit
+#+begin_src elisp
+  ;; Forge
+  (use-package forge
+    :ensure t
+    :after magit)
+#+end_src
+* Recentf Mode
+  Open recently opened files
+#+begin_src elisp
+  ;; Recentf-mode
+  (use-package recentf
+    :demand t
+    :config
+    (setq recentf-max-saved-items 500
+          recentf-max-menu-items 15
+          ;; disable recentf-cleanup on Emacs start, because it can cause
+          ;; problems with remote files
+          recentf-auto-cleanup 'never)
+    (recentf-mode 1)
+    :bind (("C-x C-r" . recentf-open-files)))
+#+end_src
+* Backup files
+#+begin_src elisp
+  ;; Backup Files
+  (defvar --backup-directory (concat user-emacs-directory "backups"))
+  (if (not (file-exists-p --backup-directory))
+          (make-directory --backup-directory t))
+  (setq backup-directory-alist `(("." . ,--backup-directory)))
+  (setq make-backup-files t               ; backup of a file the first time it is saved.
+        backup-by-copying t               ; don't clobber symlinks
+        version-control t                 ; version numbers for backup files
+        delete-old-versions t             ; delete excess backup files silently
+        delete-by-moving-to-trash t
+        kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
+        kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
+        auto-save-default t               ; auto-save every buffer that visits a file
+        auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
+        auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
+        )
+#+end_src
+* Projectile
+#+begin_src elisp
+  ;; Projectile
+  (use-package projectile
+    :ensure t
+    :delight
+    :init
+    (setq projectile-completion-system 'ivy)
+    :config
+    (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+    (projectile-mode +1))
 
-;; Flycheck
-(use-package flycheck
-  :delight
-  :ensure t
-  :commands flycheck-mode
-  :init
-  (add-hook 'c++-mode-hook 'flycheck-mode)
-  (add-hook 'c-mode-hook 'flycheck-mode)
-  (add-hook 'ruby-mode-hook 'flycheck-mode))
+#+end_src
+* Json Mode
+#+begin_src elisp
+  ;; Json Mode
+  (use-package json-mode
+    :mode "\\.json\\'"
+    :ensure t)
+#+end_src
+* Dired
+#+begin_src elisp :tangle no
+  ;; Dired
+  (use-package dired
+    :init)
+    (add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)(dired-sort-toggle-or-edit))))
+#+end_src
+* Phi search
+  Search when using multiple cursors
+#+begin_src elisp
+  ;; Phi search
+  (use-package phi-search
+    :ensure t
+    :config)
+#+end_src
+* Abbrev mode
+  Expand text on the fly
+#+begin_src elisp
+  ;; Abbrev
+  (use-package abbrev
+    :delight
+    :config
+    (setq-default abbrev-mode t)
+    )
+#+end_src
+* Smerge
+  Resolve merge conflicts using smerge
+#+begin_src elisp
+  ;; Smerge
+  (use-package smerge-mode
+    :init
+    (setq smerge-command-prefix "C-v")
+    :config
+    (add-hook 'smerge-mode-hook (lambda () (define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
+    )
+#+end_src
+* Ag
+  Search text across multiple files
+#+begin_src elisp
+  ;; ag
+  (use-package ag
+    :ensure t)
+#+end_src
+* Markdown Mode
+#+begin_src elisp
+  ;; Markdown mode
+  (use-package markdown-mode
+    :ensure t
+    :commands (markdown-mode gfm-mode)
+    :mode (("README\\.md\\'" . gfm-mode)
+           ("\\.md\\'" . markdown-mode)
+           ("\\.markdown\\'" . markdown-mode))
+    :init (setq markdown-command "markdown"))
+#+end_src
+* Rest Client
+  Rest API Calls
+#+begin_src elisp
+  ;; RestClient
+  (use-package restclient
+    :ensure t)
+#+end_src
+* Vimish Fold
+  Fold lines 
+#+begin_src elisp
+  ;; Vimish Fold
+  (use-package vimish-fold
+    :ensure t
+    :init
+    (vimish-fold-global-mode 1)
+    (global-set-key (kbd "C-c f") #'vimish-fold)
+    (global-set-key (kbd "C-c F") #'vimish-fold-delete)
+    )
+#+end_src
+* Tiny
+  Expand numbers/alphabets using tiny code
+#+begin_src elisp
+  ;; Tiny
+  (use-package tiny
+    :ensure t
+    :config
+    (global-set-key (kbd "C-c _") 'tiny-expand)
+    )
+#+end_src
+* YaTemplate
+  For inserting default code on opening a file
+#+begin_src elisp
+  ;; YaTemplate
+  (use-package yatemplate
+    :ensure t
+    :config
+    (auto-insert-mode t)
+    (setq auto-insert-query nil)
+    (setq auto-insert-alist nil)
+    (yatemplate-fill-alist))
+#+end_src
+* Ace Window
+  Quickly Switch between windows
+#+begin_src elisp
+  ;; Switch Windows
+  (use-package ace-window
+    :init
+    :ensure t
+    :config
+    :bind (("C-c o" . ace-window))
+    )
+#+end_src
+* Persistent Scratch
+  Never loose what you've written in scratch buffer unless you delete
+  it manually.
+#+begin_src elisp
+  ;; persistent-scratch
+  (use-package persistent-scratch
+    :ensure t
+    :config
+    (persistent-scratch-setup-default))
 
-;; Magit
-(use-package magit
-  :ensure t
-  :delight
-  :bind (("C-x g" . magit-status)))
+#+end_src
+* Diff Highlight
+  Highlight Difference in code from previous commit
+#+begin_src elisp :tangle no
+  ;; Diff Highlight
+  (use-package diff-hl
+   :init
+   (global-diff-hl-mode)
+   :ensure t
+   :config
+   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+   )
+#+end_src
+* Power Thesaurus
+  For synonyms using web
+#+begin_src elisp
+  ;; Power Thesaurus
+  (use-package powerthesaurus
+    :init
+    :ensure t
+    :config
+    (global-set-key (kbd "s-.") 'powerthesaurus-lookup-word-at-point)
+    (global-set-key (kbd "s-,") 'powerthesaurus-lookup-word)
+    )
+#+end_src
+* Inihibit Startup Screen
+#+begin_src elisp
+  ;; Inhibit Startup Screen
+  (setq inhibit-startup-message t)
+#+end_src
+* Vterm
+  C-based terminal emulator
+#+begin_src elisp
+  ;; Vterm
+  (use-package vterm
+    :demand t
+    :ensure t)
+#+end_src
+* Dumb Jump
+  Jump between code
+#+begin_src elisp
+  ;; Dumb Jump
+  (use-package dumb-jump
+    :bind (("M-g o" . dumb-jump-go-other-window)
+           ("M-g j" . dumb-jump-go)
+           ("M-g b" . dumb-jump-back)
+           ("M-g i" . dumb-jump-go-prompt)
+           ("M-g x" . dumb-jump-go-prefer-external)
+           ("M-g z" . dumb-jump-go-prefer-external-other-window))
+    :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+    :demand t
+    :ensure t)
+#+end_src
+* Evil Leader
+  Evil Leader
+#+begin_src elisp :tangle no
+  ;; Evil Leader
+  (use-package evil-leader
+    :init
+    :ensure t
+    :config
+    (global-evil-leader-mode)
+    (evil-leader/set-leader "<SPC>")
+    )
+#+end_src
+* Evil
+  For Vim bindings
+#+begin_src elisp
+  ;; Evil
+  (use-package evil
+    :init
+    (setq evil-disable-insert-state-bindings t)
+    ;;(defalias 'evil-insert-state 'evil-emacs-state)
+    (setq evil-default-state 'emacs)
+    (setq evil-want-C-u-scroll t)
+    (setq evil-normal-state-cursor '(box "orange"))
+    (setq evil-emacs-state-cursor '(box "white"))
+    :ensure t
+    :config
+    (evil-mode t)
+    )
+  (eval-after-load 'evil-core
+    '(evil-set-initial-state 'magit-popup-mode 'emacs))
+  (eval-after-load 'evil-core
+    '(evil-set-initial-state 'shell-mode 'emacs))
 
-;; Forge
-(use-package forge
-  :ensure t
-  :after magit)
+  (defadvice evil-insert-state (around emacs-state-instead-of-insert-state activate)
+    (evil-emacs-state))
+  (define-key evil-emacs-state-map (kbd "<backtab>") 'evil-normal-state)
+#+end_src
+* Evil Surround
+  Surround stuff with parens, braces, etc
+#+begin_src elisp
+  ;; Evil Surround
+  (use-package evil-surround
+    :ensure t
+    :config
+    (global-evil-surround-mode 1))
+#+end_src
+* General
+  Powerful Keybindgs Package
+#+begin_src elisp
+  ;; General Keybindings
+  (use-package general
+    :init
+    :ensure t
+    :config
+    (general-swap-key nil 'motion
+    ";" ":")
+    )
+  (general-create-definer my-leader-def
+    ;; :prefix my-leader
+    :prefix "SPC")
 
-;; Recentf-mode
-(use-package recentf
-  :demand t
-  :config
-  (setq recentf-max-saved-items 500
-        recentf-max-menu-items 15
-        ;; disable recentf-cleanup on Emacs start, because it can cause
-        ;; problems with remote files
-        recentf-auto-cleanup 'never)
-  (recentf-mode 1)
-  :bind (("C-x C-r" . recentf-open-files)))
+  (my-leader-def
+    :keymaps 'normal
+    )
 
-;; Backup Files
-(defvar --backup-directory (concat user-emacs-directory "backups"))
-(if (not (file-exists-p --backup-directory))
-        (make-directory --backup-directory t))
-(setq backup-directory-alist `(("." . ,--backup-directory)))
-(setq make-backup-files t               ; backup of a file the first time it is saved.
-      backup-by-copying t               ; don't clobber symlinks
-      version-control t                 ; version numbers for backup files
-      delete-old-versions t             ; delete excess backup files silently
-      delete-by-moving-to-trash t
-      kept-old-versions 6               ; oldest versions to keep when a new numbered backup is made (default: 2)
-      kept-new-versions 9               ; newest versions to keep when a new numbered backup is made (default: 2)
-      auto-save-default t               ; auto-save every buffer that visits a file
-      auto-save-timeout 20              ; number of seconds idle time before auto-save (default: 30)
-      auto-save-interval 200            ; number of keystrokes between auto-saves (default: 300)
-      )
+  (my-leader-def
+    :keymaps 'visual
+    "c" 'comment-dwim)
+#+end_src
+* Annotate
+  Annotate files without writing to files
+#+begin_src elisp
+  (use-package annotate
+    :init
+    :ensure t
+    :config
+    (global-set-key (kbd "s-\\") 'annotate-mode)
+    )
+#+end_src
+* Itail
+  Remote tail command kind of
+#+begin_src elisp
+  (use-package itail
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Highlight-Indent-Guides
+  Highlights the columns
+#+begin_src elisp
+  (use-package highlight-indent-guides
+    :init
+    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+    :ensure t
+    :config
+    )
+#+end_src
+* Paradox
+  Update packages async, show github stars, sort, filter
+#+begin_src elisp
+  (use-package paradox
+    :init
+    :ensure t
+    :config
+    (paradox-enable)
+    )
+#+end_src
+* Calfw
+  Calender UI
+#+begin_src elisp
+  (use-package calfw
+    :init
+    :ensure t
+    :config
+    )
 
-;; Projectile
-(use-package projectile
-  :ensure t
-  :delight
-  :init
-  (setq projectile-completion-system 'ivy)
-  :config
-  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
-  (projectile-mode +1))
+  (use-package calfw-org
+    :init
+    :ensure t
+    :config
+    (global-set-key (kbd "s-/") 'cfw:open-org-calendar)
+    )
 
+  (use-package calfw-cal
+    :init
+    :ensure t
+    :config
+    )
 
-;; Json Mode
-(use-package json-mode
-  :mode "\\.json\\'"
-  :ensure t)
-
-;; Dired
-(use-package dired
-  :init)
-  ;(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)(dired-sort-toggle-or-edit))))
-
-;; Phi search
-(use-package phi-search
-  :ensure t
-  :config)
-
-;; Abbrev
-(use-package abbrev
-  :delight
-  )
-
-;; Smerge
-(use-package smerge-mode
-  :init
-  (setq smerge-command-prefix "C-v")
-  :config
-  (add-hook 'smerge-mode-hook (lambda ()(define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
-  )
-
-;; ag
-(use-package ag
-  :ensure t)
-
-;; Markdown mode
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "markdown"))
-
-;; RestClient
-(use-package restclient
-  :ensure t)
-
-;; Vimish Fold
-(use-package vimish-fold
-  :ensure t
-  :init
-  (vimish-fold-global-mode 1)
-  (global-set-key (kbd "C-c f") #'vimish-fold)
-  (global-set-key (kbd "C-c F") #'vimish-fold-delete)
-  )
-
-;; Tiny
-(use-package tiny
-  :ensure t
-  :config
-  (global-set-key (kbd "C-c _") 'tiny-expand)
-  )
-
-;; YaTemplate
-(use-package yatemplate
-  :ensure t
-  :config
-  (auto-insert-mode t)
-  (setq auto-insert-query nil)
-  (setq auto-insert-alist nil)
-  (yatemplate-fill-alist))
-
-;; Switch Windows
-(use-package ace-window
-  :init
-  :ensure t
-  :config
-  :bind (("C-c o" . ace-window))
-  )
-
-;; persistent-scratch
-(use-package persistent-scratch
-  :ensure t
-  :config
-  (persistent-scratch-setup-default))
-
-;; Hash Library
-(use-package ht
-  :init
-  :demand t
-  :ensure t)
-
-;; Diff Highlight
-;(use-package diff-hl
-;  :init
-;  (global-diff-hl-mode)
-;  :ensure t
-;  :config
-;  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-;  )
-
-;; Power Thesaurus
-(use-package powerthesaurus
-  :init
-  :ensure t
-  :config
-  (global-set-key (kbd "s-.") 'powerthesaurus-lookup-word-at-point)
-  (global-set-key (kbd "s-,") 'powerthesaurus-lookup-word)
-  )
-
-;; Inhibit Startup Screen
-(setq inhibit-startup-message t)
-
-;; Vterm
-(use-package vterm
-  :demand t
-  :ensure t)
-
-;; Dumb Jump
-(use-package dumb-jump
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-g j" . dumb-jump-go)
-         ("M-g b" . dumb-jump-back)
-         ("M-g i" . dumb-jump-go-prompt)
-         ("M-g x" . dumb-jump-go-prefer-external)
-         ("M-g z" . dumb-jump-go-prefer-external-other-window))
-  :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-  :demand t
-  :ensure t)
-
-;; Evil Leader
-;; (use-package evil-leader
-;;   :init
-;;   :ensure t
-;;   :config
-;;   (global-evil-leader-mode)
-;;   (evil-leader/set-leader "<SPC>")
-;;   )
-
-;; Evil
-(use-package evil
-  :init
-  (setq evil-disable-insert-state-bindings t)
-  ;;(defalias 'evil-insert-state 'evil-emacs-state)
-  (setq evil-default-state 'emacs)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-normal-state-cursor '(box "orange"))
-  (setq evil-emacs-state-cursor '(box "white"))
-  :ensure t
-  :config
-  (evil-mode t)
-  )
-(eval-after-load 'evil-core
-  '(evil-set-initial-state 'magit-popup-mode 'emacs))
-(eval-after-load 'evil-core
-  '(evil-set-initial-state 'shell-mode 'emacs))
-
-(defadvice evil-insert-state (around emacs-state-instead-of-insert-state activate)
-  (evil-emacs-state))
-(define-key evil-emacs-state-map (kbd "<backtab>") 'evil-normal-state)
-;; ;; Evil Surround
-;; (use-package evil-surround
-;;   :ensure t
-;;   :config
-;;   (global-evil-surround-mode 1))
-
-;; General Keybindings
-(use-package general
-  :init
-  :ensure t
-  :config
-  (general-swap-key nil 'motion
-  ";" ":")
-  )
-(general-create-definer my-leader-def
-  ;; :prefix my-leader
-  :prefix "SPC")
-
-(my-leader-def
-  :keymaps 'normal
-  )
-
-(my-leader-def
-  :keymaps 'visual
-  "c" 'comment-dwim)
-
-(use-package annotate
-  :init
-  :ensure t
-  :config
-  (global-set-key (kbd "s-\\") 'annotate-mode)
-  )
-
-(use-package itail
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package highlight-indent-guides
-  :init
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  :ensure t
-  :config
-  )
-
-(use-package paradox
-  :init
-  :ensure t
-  :config
-  (paradox-enable)
-  )
-
-(use-package calfw
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package calfw-org
-  :init
-  :ensure t
-  :config
-  (global-set-key (kbd "s-/") 'cfw:open-org-calendar)
-  )
-
-(use-package calfw-cal
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package calfw-ical
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package ace-jump-mode
-  :init
-  :ensure t
-  :config
-  )
-(use-package shx
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package visual-regexp-steroids
-  :init
-  :ensure t
-  :config
-  )
-
-(use-package prodigy
-  :init
-  :ensure t
-  :config
-  (setq prodigy-services nil)
-  (prodigy-define-service
-    :name "Rails server Development"
-    :command "rails"
-    :args '("server")
-    :cwd "~/Rails/api/viv-colending-api"
-    :tags '(work)
-    :stop-signal 'sigint
-    :kill-process-buffer-on-stop t)
-  (prodigy-define-service
-    :name "Rails server QA"
-    :command "rails"
-    :args '("server" "-e" "qa")
-    :cwd "~/Rails/api/viv-colending-api"
-    :tags '(work)
-    :stop-signal 'sigint
-    :kill-process-buffer-on-stop t)
-  (prodigy-define-service
-    :name "Rails server Staging"
-    :command "rails"
-    :args '("server" "-e" "staging")
-    :cwd "~/Rails/api/viv-colending-api"
-    :tags '(work)
-    :stop-signal 'sigint
-    :kill-process-buffer-on-stop t)
-  (prodigy-define-service
-    :name "Rails server Production"
-    :command "rails"
-    :args '("server" "-e" "production")
-    :cwd "~/Rails/api/viv-colending-api"
-    :tags '(work)
-    :stop-signal 'sigint
-    :kill-process-buffer-on-stop t)
-  )
-
-(use-package vdiff
-  :init
-  :ensure t
-  :config
-  (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
-  )
-
+  (use-package calfw-ical
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Shx
+  Better shell
+#+begin_src elisp
+  (use-package shx
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Visual-Regexp-Steroids
+  Visulaize replace with regexp on the fly
+#+begin_src elisp
+  (use-package visual-regexp-steroids
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Prodigy
+  Start, stop processes/services from Emacs buffer and see
+  corresponding logs
+#+begin_src elisp
+  (use-package prodigy
+    :init
+    :ensure t
+    :config
+    (setq prodigy-services nil)
+    (prodigy-define-service
+      :name "Rails server Development"
+      :command "rails"
+      :args '("server")
+      :cwd "~/Rails/api/viv-colending-api"
+      :tags '(work)
+      :stop-signal 'sigint
+      :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Rails server QA"
+      :command "rails"
+      :args '("server" "-e" "qa")
+      :cwd "~/Rails/api/viv-colending-api"
+      :tags '(work)
+      :stop-signal 'sigint
+      :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Rails server Staging"
+      :command "rails"
+      :args '("server" "-e" "staging")
+      :cwd "~/Rails/api/viv-colending-api"
+      :tags '(work)
+      :stop-signal 'sigint
+      :kill-process-buffer-on-stop t)
+    (prodigy-define-service
+      :name "Rails server Production"
+      :command "rails"
+      :args '("server" "-e" "production")
+      :cwd "~/Rails/api/viv-colending-api"
+      :tags '(work)
+      :stop-signal 'sigint
+      :kill-process-buffer-on-stop t)
+    )
+#+end_src
+* Vdiff
+  vimdiff for emacs
+#+begin_src elisp
+  (use-package vdiff
+    :init
+    :ensure t
+    :config
+    (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
+    )
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-common)
+
+;;; my-common package ends here
+
 #+end_src

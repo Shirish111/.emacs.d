@@ -1,17 +1,22 @@
 #+TITLE: Java
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-java.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-java' package is used to load the required configuration
-
+#+end_src
+* autodisass-java-bytecode
+#+begin_src elisp
 ;; autodisass-java-bytecode
 (use-package autodisass-java-bytecode
   :ensure t
   :defer t)
-
+#+end_src
+* Meghanada
+#+begin_src elisp
 ;; Meghanada
 ;; `NOTE': Run meghanada-update-server on installation
 (use-package meghanada
@@ -47,7 +52,9 @@
         ("C-z" . hydra-meghanada/body))
   :commands
   (meghanada-mode))
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-java)
 
 ;;; my-java package ends here

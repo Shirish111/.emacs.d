@@ -1,5 +1,6 @@
 #+TITLE: My Neotree
 #+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
 #+begin_src elisp
 ;;; my-neotree.el --- Configuration to be loaded while starting emacs
 ;;; Commentary

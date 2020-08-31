@@ -1,12 +1,15 @@
 #+TITLE: Python
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-python.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-python' package is used to load the required configuration
-
+#+end_src
+* Python
+#+begin_src elisp
 (use-package python
   :mode ("\\.py\\'" . python-mode)
         ("\\.wsgi$" . python-mode)
@@ -15,7 +18,9 @@
   (setq-default indent-tabs-mode nil)
   :config
   (setq python-indent-offset 4))
-
+#+end_src
+* Jedi
+#+begin_src elisp
 (use-package jedi
   :ensure t
   :init
@@ -26,7 +31,9 @@
     :init
     (add-hook 'python-mode-hook (lambda () (add-to-list 'company-backends 'company-jedi)))
     (setq company-jedi-python-bin "python")))
-
+#+end_src
+* Anaconda-mode
+#+begin_src elisp
 (use-package anaconda-mode
   :ensure t
   :init (add-hook 'python-mode-hook 'anaconda-mode)
@@ -36,7 +43,9 @@
             :init (add-hook 'python-mode-hook 'anaconda-mode)
             (eval-after-load "company"
               '(add-to-list 'company-backends '(company-anaconda :with company-capf)))))
-
+#+end_src
+* Elpy
+#+begin_src elisp
 (use-package elpy
   :ensure t
   :commands elpy-enable
@@ -58,7 +67,9 @@
 
   :bind (:map elpy-mode-map ([remap elpy-goto-definition] .
                              ha/elpy-goto-definition)))
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-python)
 
 ;;; my-python package ends here

@@ -1,13 +1,15 @@
 #+TITLE: Ruby
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
-
+* Package Initialization
 #+begin_src elisp
 ;;; my-ruby.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-ruby' package is used to load the required configuration
-
+#+end_src
+* Ruby mode
+#+begin_src elisp
 ;; Ruby mode
 (use-package ruby-mode
   :ensure t
@@ -27,18 +29,24 @@
   ((("C-c C-e" . ruby-send-region)))
   :config
   (define-key ruby-mode-map (kbd "C-c r") nil))  ;; Rebind since Rubocop uses C-c C-r
-
+#+end_src
+* Web Mode
+#+begin_src elisp
 ;; Web mode
 (use-package web-mode
   :ensure t
   :mode "\\.erb\\'")
-
+#+end_src
+* Rvm
+#+begin_src elisp
 ;; RVM
 (use-package rvm
   :ensure t
   :config
   (rvm-use-default))
-
+#+end_src
+* Yari
+#+begin_src elisp
 ;; Yari
 (use-package yari
   :ensure t
@@ -47,19 +55,26 @@
             (lambda ()
               (local-set-key [f1] 'yari))))
 
+#+end_src
+* Inf Ruby
+#+begin_src elisp
 ;; Inf-ruby
 (use-package inf-ruby
   :ensure t
   :init
   (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode))
-
+#+end_src
+* Rubocop
+#+begin_src elisp
 ;; Rubocop
 (use-package rubocop
   :ensure t
   :init
   (add-hook 'ruby-mode-hook 'rubocop-mode)
   :diminish rubocop-mode)
-
+#+end_src
+* Robe
+#+begin_src elisp
 ;; Robe
 (use-package robe
   :ensure t
@@ -73,7 +88,9 @@
   (defadvice inf-ruby-console-auto
     (before activate-rvm-for-robe activate)
     (rvm-activate-corresponding-ruby)))
-
+#+end_src
+* Ruby Tools
+#+begin_src elisp
 ;; Ruby Tools
 (use-package ruby-tools
   :ensure t
@@ -83,14 +100,18 @@
   :init
   (add-hook 'ruby-mode-hook 'ruby-tools-mode)
   :diminish ruby-tools-mode)
-
+#+end_src
+* Rubocopfmt
+#+begin_src elisp
 ;; Rubocopfmt
 (use-package rubocopfmt
   :ensure t
   :init
   (add-hook 'ruby-mode-hook 'rubocopfmt-mode)
   )
-
+#+end_src
+* Projectile-rails
+#+begin_src elisp
 ;; Projectile-rails
 (use-package projectile-rails
   :ensure t
@@ -120,7 +141,9 @@
      "service: "
      '(("app/services/" "\\(.+?\\)\\(\\)?\\.rb$"))
      "app/services/${filename}.rb")))
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-ruby)
 
 ;;; my-ruby package ends here

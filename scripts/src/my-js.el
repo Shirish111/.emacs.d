@@ -2,6 +2,7 @@
 ;;; Commentary
 
 ;; The `my-js' package is used to load the required configuration
+
 ;; Js2-mode
 (use-package js2-mode
   :ensure t

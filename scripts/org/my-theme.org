@@ -1,11 +1,16 @@
 #+TITLE: My Theme
 #+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-theme.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-theme' package is used to load the required configuration
+#+end_src
 
+* Window Preferences
+#+begin_src elisp
 ;; Window Preferences
 ;; Left Margin
 ;(setq-default left-margin-width 2)
@@ -21,21 +26,27 @@
 
 ;; Font size
 (set-face-attribute 'default nil :height 120)
-
+#+end_src
+* Spacemacs theme
+#+begin_src elisp :tangle no
 ;; Spacemacs theme
  ;; (use-package spacemacs-theme
  ;;   :delight 
  ;;   :ensure t
  ;;   :defer t
  ;;   :init (load-theme 'spacemacs-dark t))
-
+#+end_src
+* Monokai theme
+#+begin_src elisp :tangle no
 ;; Monokai theme
 ;; (use-package monokai-theme
 ;;   :init
 ;;   :ensure t
 ;;   :config
 ;;   )
-
+#+end_src
+* Dracula theme
+#+begin_src elisp  :tangle no
 ;; Dracula theme
 ;; (use-package dracula-theme
 ;;  :init
@@ -43,7 +54,9 @@
 ;;  :ensure t
 ;;  :config
 ;;  )
-
+#+end_src
+* Hlinum
+#+begin_src elisp :tangle no
 ;; (use-package hlinum
 ;;   :init
 ;;   :ensure t
@@ -51,13 +64,17 @@
 ;;   (hlinum-activate)
 ;;   (hlinum-highlight-line)
 ;;   )
-
+#+end_src
+* zenburn-theme
+#+begin_src elisp :tangle no
 ;; (use-package zenburn-theme
 ;;   :init
 ;;   :ensure t
 ;;   :config
 ;;   )
-
+#+end_src
+* solarized-theme
+#+begin_src elisp :tangle no
 ;; (use-package solarized-theme
 ;;   :init
 ;;   :ensure t
@@ -65,7 +82,9 @@
 ;;   (load-theme 'solarized-dark t)
 ;;   )
 
-
+#+end_src
+* doom-themes
+#+begin_src elisp
 (use-package doom-themes
   :ensure t
   :config
@@ -84,11 +103,15 @@
   (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
  (doom-themes-org-config))
-
+#+end_src
+* doom-modeline
+#+begin_src elisp
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
-
+#+end_src
+* Kaolin Treemacs Themes
+#+begin_src elisp :tangle no
 ;; Kaolin Treemacs Themes
 ;; (use-package kaolin-themes
 ;;   :init
@@ -96,7 +119,9 @@
 ;;   :config
 ;;     (kaolin-treemacs-theme)
 ;;   )
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-theme)
 
 ;;; my-theme package ends here

@@ -1,14 +1,15 @@
 #+TITLE: Org
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
-
+* Package Initialization
 #+begin_src elisp
   ;;; my-org.el --- Configuration to be loaded while starting emacs
   ;;; Commentary
 
   ;; The `my-org' package is used to load the required configuration
-
-
+#+end_src
+* Org
+#+begin_src elisp
   (use-package org
     :init
     (add-hook 'org-mode-hook (lambda ()
@@ -57,19 +58,27 @@
       :demand t)
     ;(add-hook 'before-save-hook (lambda () (when (eq major-mode 'org-mode) (save-excursion (org-publish-current-file)))))
     )
-
+#+end_src
+* Set Language Environment
+#+begin_src elisp
   (set-language-environment "UTF-8")
-
+#+end_src
+* Org Drill
+#+begin_src elisp
   (use-package org-drill
     :ensure t)
-
+#+end_src
+* Org Bullets
+#+begin_src elisp
   (use-package org-bullets
     :init
     (add-hook 'org-mode-hook (lambda () (org-bullets-mode t)))
     :ensure t
     :config (message "Org bullets loaded")
     )
-
+#+end_src
+* org-babel-eval-in-repl
+#+begin_src elisp
   (use-package org-babel-eval-in-repl
     :config
     (message "org babel-eval executed")
@@ -88,20 +97,32 @@
                                     (latex . t)))
                                  ))
     :ensure t)
-
+#+end_src
+* Org Journal
+#+begin_src elisp :tangle no
   ;; (use-package org-journal
   ;;   ;:ensure t
   ;;   :demand t
   ;;   :config
   ;;   ;;(setq org-journal-dir "/path/to/org-journal/")
   ;;   (setq org-journal-date-format "%A, %d %B %Y"))
-
+#+end_src
+* Tangle All Source Blocks
+#+begin_src elisp
   ;; Tangle All Source Blocks
   (defun my-tangle-emacs-config()
     (interactive)
     (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/org" "org"))
   )
-
+#+end_src
+* Skip footer
+  Skip footer while exporting
+#+begin_src elisp
+  ;; Skip footer
+  (setq org-export-html-postamble nil)
+#+end_src
+* Package End
+#+begin_src elisp
   (provide 'my-org)
 
   ;;; my-org package ends here

@@ -1,44 +1,59 @@
 #+TITLE: Eshell
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-eshell.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 ;; The `my-eshell' package is used to load the required configuration
-
+#+end_src
+* Eshell prompt function
+#+begin_src elisp
 ;; (setq eshell-prompt-function
 ;;   (lambda ()
 ;;     (concat (user-login-name) (s-replace "Directory " " " (pwd))
 ;;       (if (= (user-uid) 0) " # " " \n$ "))))
-
+#+end_src
+* Set up the Correct Path
+#+begin_src elisp
 ;; Set up the Correct Path
 ;; (setenv "PATH"
 ;;         (concat
 ;;          "/usr/local/bin:/usr/local/sbin:"
 ;;          (getenv "PATH")))
-
-;;Pager Setup
+#+end_src
+* Pager Setup
+#+begin_src elisp
+;; Pager Setup
 (setenv "PAGER" "cat")
 
-
+#+end_src
+* esh-help
+#+begin_src elisp
 (use-package esh-help
   :ensure t
   :config
   (setup-esh-help-eldoc))
-
+#+end_src
+* eshell-did-you-mean
+#+begin_src elisp
 (use-package eshell-did-you-mean
   :init ()
   (add-hook 'eshell-mode-hook 'eshell-did-you-mean-setup)
   :ensure t
   )
 
-
+#+end_src
+* eshell-git-prompt
+#+begin_src elisp
 (use-package eshell-git-prompt
   :ensure t
   :config
   (eshell-git-prompt-use-theme 'powerline)
   )
-
+#+end_src
+* eshell-fringe-status
+#+begin_src elisp
 (use-package eshell-fringe-status
   :ensure t
   :config
@@ -46,12 +61,17 @@
   (add-hook 'eshell-mode-hook 'eshell-fringe-status-mode)
   )
 
-
+#+end_src
+* eshell-z
+#+begin_src elisp
 (use-package eshell-z
   :ensure t
   :demand t
   )
 
+#+end_src
+* eshell-prompt-function
+#+begin_src elisp
 (setq eshell-prompt-function
       (lambda ()
               "A simple prompt."
@@ -59,18 +79,24 @@
                (propertize (concat "shirish@ ") 'face `(:foreground "orange"))
                (propertize (concat (eshell/pwd) "$: ") 'face `(:foreground "orange"))
               )))
-
+#+end_src
+* Bash Aliases
+#+begin_src elisp
 ;; Bash Aliases
 ;; (use-package load-bash-alias
 ;;   :ensure t
 ;;   :config
 ;;   (setq load-bash-alias-bashrc-file "/home/shirish/.bash_it/aliases/custom.aliases.bash"))
-
+#+end_src
+* crontab-e
+#+begin_src elisp
 (defun crontab-e ()
     "Run `crontab -e' in a emacs buffer."
     (interactive)
     (with-editor-async-shell-command "crontab -e"))
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-eshell)
 
 ;;; my-eshell package ends here

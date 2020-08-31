@@ -2,6 +2,7 @@
 ;;; Commentary
 
 ;; The `my-cpp' package is used to load the required configuration
+
 ;; Clang-format
 (use-package clang-format
   :delight
@@ -13,6 +14,7 @@
   ;; `NOTE': Set clang-format executable location
   (setq clang-format-executable "/usr/local/bin/clang-format")
   )
+
 (use-package google-c-style
   :defer t
   :ensure t
@@ -102,7 +104,7 @@ void f(int a, int b) {
 
 ;; Flycheck
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++14")(setq flycheck-clang-language-standard "c++14")))
-  
+
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

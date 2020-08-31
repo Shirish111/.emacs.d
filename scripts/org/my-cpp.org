@@ -1,11 +1,15 @@
 #+TITLE: Cpp
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-cpp.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-cpp' package is used to load the required configuration
+#+end_src
+* Clang Format
+#+begin_src elisp
 ;; Clang-format
 (use-package clang-format
   :delight
@@ -17,12 +21,17 @@
   ;; `NOTE': Set clang-format executable location
   (setq clang-format-executable "/usr/local/bin/clang-format")
   )
+#+end_src
+* Google C Style
+#+begin_src elisp
 (use-package google-c-style
   :defer t
   :ensure t
   :commands
   (google-set-c-style))
-
+#+end_src
+* Custom Debugging Cpp Code Functions
+#+begin_src elisp
 (defun my-cpp-fetch-func-params()
   "
 This function copies function paramters as a string
@@ -103,10 +112,15 @@ void f(int a, int b) {
 
 (global-set-key (kbd "M-]") 'my-cpp-cout-variable-f)
 (global-set-key (kbd "M-[") 'my-cpp-cin-variable-f)
-
+#+end_src
+* Flycheck Cpp Hook
+  
+#+begin_src elisp
 ;; Flycheck
 (add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++14")(setq flycheck-clang-language-standard "c++14")))
-  
+  #+end_src
+* Package End  
+  #+begin_src elisp
 (provide 'my-cpp)
 
 ;;; my-cpp package ends here

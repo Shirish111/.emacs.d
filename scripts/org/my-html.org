@@ -1,13 +1,15 @@
 #+TITLE: HTML
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
-
+* Package Initialization
 #+begin_src elisp
 ;;; my-html.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-html' package is used to load the required configuration
-
+#+end_src
+* Web Mode
+#+begin_src elisp
 (use-package web-mode
   :ensure t
   :mode ("\\.html$" . web-mode)
@@ -20,7 +22,9 @@
   (setq web-mode-enable-auto-expanding t)
   (setq web-mode-enable-css-colorization t)
   (add-hook 'web-mode-hook 'electric-pair-mode))
-
+#+end_src
+* Prettier formatting
+#+begin_src elisp
 ;; Prettier formatting
 ;; `NOTE': npm -g install prettier
 (use-package prettier-js
@@ -31,7 +35,9 @@
   (add-hook 'js-mode 'prettier-js-mode)
   (add-hook 'js2-mode 'prettier-js-mode)
   (add-hook 'css-mode 'prettier-js-mode))
-
+#+end_src
+* emmet-mode
+#+begin_src elisp
 (use-package emmet-mode
   :ensure t
   :commands emmet-mode
@@ -43,7 +49,9 @@
   (add-hook 'css-mode-hook  'emmet-mode)
   (add-hook 'web-mode 'prettier-js-mode)
   )
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-html)
 
 ;;; my-html package ends here

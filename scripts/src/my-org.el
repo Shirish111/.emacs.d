@@ -3,7 +3,6 @@
 
 ;; The `my-org' package is used to load the required configuration
 
-
 (use-package org
   :init
   (add-hook 'org-mode-hook (lambda ()
@@ -84,18 +83,14 @@
                                ))
   :ensure t)
 
-;; (use-package org-journal
-;;   ;:ensure t
-;;   :demand t
-;;   :config
-;;   ;;(setq org-journal-dir "/path/to/org-journal/")
-;;   (setq org-journal-date-format "%A, %d %B %Y"))
-
 ;; Tangle All Source Blocks
 (defun my-tangle-emacs-config()
   (interactive)
   (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/org" "org"))
 )
+
+;; Skip footer
+(setq org-export-html-postamble nil)
 
 (provide 'my-org)
 

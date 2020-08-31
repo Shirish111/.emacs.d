@@ -1,12 +1,15 @@
 #+TITLE: Config
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-config.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-config' package is used to load the required configuration
-
+#+end_src
+* Load packages
+#+begin_src elisp
 (use-package my-theme)
 (use-package my-common)
 (use-package my-custom)
@@ -25,7 +28,9 @@
 (add-to-list 'load-path "~/my-emacs/scripts/emacs_custom")
 ;(use-package my-dashboard)
 (use-package my-personal)
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-config)
 
 ;;; my-config package ends here

@@ -3,8 +3,6 @@
 
 ;; The `my-theme' package is used to load the required configuration
 
-
-
 ;; Window Preferences
 ;; Left Margin
 ;(setq-default left-margin-width 2)
@@ -20,50 +18,6 @@
 
 ;; Font size
 (set-face-attribute 'default nil :height 120)
-
-;; Spacemacs theme
- ;; (use-package spacemacs-theme
- ;;   :delight 
- ;;   :ensure t
- ;;   :defer t
- ;;   :init (load-theme 'spacemacs-dark t))
-
-;; Monokai theme
-;; (use-package monokai-theme
-;;   :init
-;;   :ensure t
-;;   :config
-;;   )
-
-;; Dracula theme
-;; (use-package dracula-theme
-;;  :init
-;;  (load-theme 'dracula t)
-;;  :ensure t
-;;  :config
-;;  )
-
-;; (use-package hlinum
-;;   :init
-;;   :ensure t
-;;   :config
-;;   (hlinum-activate)
-;;   (hlinum-highlight-line)
-;;   )
-
-;; (use-package zenburn-theme
-;;   :init
-;;   :ensure t
-;;   :config
-;;   )
-
-;; (use-package solarized-theme
-;;   :init
-;;   :ensure t
-;;   :config
-;;   (load-theme 'solarized-dark t)
-;;   )
-
 
 (use-package doom-themes
   :ensure t
@@ -87,14 +41,6 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
-
-;; Kaolin Treemacs Themes
-;; (use-package kaolin-themes
-;;   :init
-;;   :ensure t
-;;   :config
-;;     (kaolin-treemacs-theme)
-;;   )
 
 (provide 'my-theme)
 

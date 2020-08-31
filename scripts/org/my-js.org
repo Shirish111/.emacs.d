@@ -1,11 +1,15 @@
 #+TITLE: JS
 #+AUTHOR: Shirishkumar Togarla
 #+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
 #+begin_src elisp
 ;;; my-js.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
 
 ;; The `my-js' package is used to load the required configuration
+#+end_src
+* Js2 mode
+#+begin_src elisp
 ;; Js2-mode
 (use-package js2-mode
   :ensure t
@@ -24,7 +28,9 @@
               (push '("function" . ?ƒ) prettify-symbols-alist)))
 
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode)))
-
+#+end_src
+* color-identifiers-mode
+#+begin_src elisp
 ;; color-identifiers-mode
 (use-package color-identifiers-mode
     :ensure t
@@ -33,7 +39,9 @@
 
 (add-hook 'js2-mode-hook
           (lambda () (flycheck-select-checker "javascript-eslint")))
-
+#+end_src
+* Tern
+#+begin_src elisp
 ;; tern
 ;; `NOTE' sudo npm -g install tern
 ;; (use-package tern
@@ -43,27 +51,37 @@
 ;;      (use-package company-tern
 ;;         :ensure t
 ;;         :init (add-to-list 'company-backends 'company-tern)))
-
+#+end_src
+* Js2 Refactor
+#+begin_src elisp
 ;; js2-refactor
 (use-package js2-refactor
   :ensure t
   :init   (add-hook 'js2-mode-hook 'js2-refactor-mode)
   :config (js2r-add-keybindings-with-prefix "C-c ."))
-
+#+end_src
+* SKewer Mode
+#+begin_src elisp
 ;; skewer-mode
 (use-package skewer-mode
    :ensure t
    :init (add-hook 'js2-mode-hook 'skewer-mode))
-
+#+end_src
+* Company Tern
+#+begin_src elisp
 ;; Company tern
 ;; (use-package company-tern
 ;;   :ensure t
 ;;   :init
 ;;   (add-to-list 'company-backends 'company-tern))
-
+#+end_src
+* Js Comint
+#+begin_src elisp
 (use-package js-comint
   :ensure t)
-
+#+end_src
+* Package End
+#+begin_src elisp
 (provide 'my-js)
 
 ;;; my-js package ends here

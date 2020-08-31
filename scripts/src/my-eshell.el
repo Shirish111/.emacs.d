@@ -13,9 +13,8 @@
 ;;          "/usr/local/bin:/usr/local/sbin:"
 ;;          (getenv "PATH")))
 
-;;Pager Setup
+;; Pager Setup
 (setenv "PAGER" "cat")
-
 
 (use-package esh-help
   :ensure t
@@ -27,7 +26,6 @@
   (add-hook 'eshell-mode-hook 'eshell-did-you-mean-setup)
   :ensure t
   )
-
 
 (use-package eshell-git-prompt
   :ensure t
@@ -41,7 +39,6 @@
   :init
   (add-hook 'eshell-mode-hook 'eshell-fringe-status-mode)
   )
-
 
 (use-package eshell-z
   :ensure t

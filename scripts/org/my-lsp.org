@@ -1,5 +1,6 @@
 #+TITLE: My LSP
 #+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
 #+begin_src elisp
 ;;; my-lsp.el --- Configuration to be loaded while starting emacs
 ;;; Commentary
