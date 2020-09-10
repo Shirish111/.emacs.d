@@ -83,10 +83,24 @@
                                ))
   :ensure t)
 
+(use-package ox-reveal
+  :init
+  :ensure t
+  :config
+  (setq org-reveal-title-slide nil)
+  )
+
+(use-package org-tree-slide
+  :init
+  :ensure t
+  :config
+  )
+
 ;; Tangle All Source Blocks
 (defun my-tangle-emacs-config()
   (interactive)
   (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/org" "org"))
+  (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/emacs_custom" "org"))
 )
 
 ;; Skip footer

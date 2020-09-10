@@ -1,11 +1,20 @@
-(require 'warnings)
-(require 'ht)
-(regexp-quote "#+PROPERTY: header-args :tangle ../src/")
+;;; my-common.el-- - Common Utitlies
+;;; Commentary
+;; The `my-common' package is used to load the common utilities
+
+;; Hash Library
+(use-package ht
+  :init
+  :demand t
+  :ensure t)
 
 ;; Rainbow Delimiters
 (use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
   :ensure t
-  :delight)
+  :delight
+  :config
+  )
 
 ;; Expand Region
 (use-package expand-region
@@ -13,7 +22,7 @@
   :delight
   :bind(("C-;" . er/expand-region))
   :after (org))
-  
+
 ;; Multiple Cursors
 (use-package multiple-cursors
   :delight
@@ -28,12 +37,12 @@
          ("<s-mouse-1>" . mc/add-cursor-on-click)
          ))
 
-;;Which key
+;; Which key
 (use-package which-key
   :ensure t
   :demand t
-  :delight
-  :config(which-key-mode 1))
+  :delight)
+  ;;:config(which-key-mode 1))
 
 ;; Smartparens
 (use-package smartparens
@@ -104,10 +113,6 @@
          )
   )
 
-;; Yasnippet snippets
-;(use-package yasnippet-snippets
-;    :ensure t)
-
 ;; Flycheck
 (use-package flycheck
   :delight
@@ -119,10 +124,13 @@
   (add-hook 'ruby-mode-hook 'flycheck-mode))
 
 ;; Magit
-(use-package magit
-  :ensure t
-  :delight
-  :bind (("C-x g" . magit-status)))
+  (use-package magit
+    :ensure t
+    :delight
+    :bind (("C-x g" . magit-status))
+    :config
+    (setq magit-status-)
+)
 
 ;; Forge
 (use-package forge
@@ -165,19 +173,14 @@
   :init
   (setq projectile-completion-system 'ivy)
   :config
-  (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  ;;(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+  (global-set-key (kbd "C-f") 'find-file)
   (projectile-mode +1))
-
 
 ;; Json Mode
 (use-package json-mode
   :mode "\\.json\\'"
   :ensure t)
-
-;; Dired
-(use-package dired
-  :init)
-  ;(add-hook 'dired-mode-hook (lambda () (dired-hide-details-mode)(dired-sort-toggle-or-edit))))
 
 ;; Phi search
 (use-package phi-search
@@ -187,6 +190,8 @@
 ;; Abbrev
 (use-package abbrev
   :delight
+  :config
+  (setq-default abbrev-mode t)
   )
 
 ;; Smerge
@@ -194,7 +199,7 @@
   :init
   (setq smerge-command-prefix "C-v")
   :config
-  (add-hook 'smerge-mode-hook (lambda ()(define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
+  (add-hook 'smerge-mode-hook (lambda () (define-key smerge-mode-map (kbd ".") 'smerge-keep-current)))
   )
 
 ;; ag
@@ -253,21 +258,6 @@
   :config
   (persistent-scratch-setup-default))
 
-;; Hash Library
-(use-package ht
-  :init
-  :demand t
-  :ensure t)
-
-;; Diff Highlight
-;(use-package diff-hl
-;  :init
-;  (global-diff-hl-mode)
-;  :ensure t
-;  :config
-;  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-;  )
-
 ;; Power Thesaurus
 (use-package powerthesaurus
   :init
@@ -280,11 +270,6 @@
 ;; Inhibit Startup Screen
 (setq inhibit-startup-message t)
 
-;; Vterm
-(use-package vterm
-  :demand t
-  :ensure t)
-
 ;; Dumb Jump
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
@@ -296,15 +281,6 @@
   :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
   :demand t
   :ensure t)
-
-;; Evil Leader
-;; (use-package evil-leader
-;;   :init
-;;   :ensure t
-;;   :config
-;;   (global-evil-leader-mode)
-;;   (evil-leader/set-leader "<SPC>")
-;;   )
 
 ;; Evil
 (use-package evil
@@ -327,11 +303,12 @@
 (defadvice evil-insert-state (around emacs-state-instead-of-insert-state activate)
   (evil-emacs-state))
 (define-key evil-emacs-state-map (kbd "<backtab>") 'evil-normal-state)
-;; ;; Evil Surround
-;; (use-package evil-surround
-;;   :ensure t
-;;   :config
-;;   (global-evil-surround-mode 1))
+
+;; Evil Surround
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
 
 ;; General Keybindings
 (use-package general
@@ -405,17 +382,6 @@
   :config
   )
 
-(use-package ace-jump-mode
-  :init
-  :ensure t
-  :config
-  )
-(use-package shx
-  :init
-  :ensure t
-  :config
-  )
-
 (use-package visual-regexp-steroids
   :init
   :ensure t
@@ -461,9 +427,12 @@
     :kill-process-buffer-on-stop t)
   )
 
-(use-package vdiff
+(use-package epa-file
   :init
-  :ensure t
   :config
-  (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
+  (epa-file-enable)
   )
+
+(provide 'my-common)
+
+;;; my-common package ends here

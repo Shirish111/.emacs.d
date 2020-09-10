@@ -25,7 +25,7 @@
 
 (global-set-key (kbd "<s-return>") (kbd "C-e C-m <tab>"))
 
-(global-set-key (kbd "C-l") '(lambda() (interactive) (copy-region-as-kill (line-beginning-position) (line-end-position)) (message "Line Copied")))
+;;(global-set-key (kbd "C-l") '(lambda() (interactive) (copy-region-as-kill (line-beginning-position) (line-end-position)) (message "Line Copied")))
 (global-set-key (kbd "s-c") '(lambda() (interactive) (copy-region-as-kill (beginning-of-buffer) (end-of-buffer) (message "Copied Buffer"))))
 (global-set-key (kbd "s-k") '(lambda() (interactive) (mark-whole-buffer) (kill-region (region-beginning) (region-end)) (message "Cut Buffer")))
 
@@ -44,9 +44,6 @@
 ;; Kill Whole line
 (global-set-key (kbd "C--") '(lambda () (interactive) (kill-whole-line)))
 
-;; Copy Whole line
-(global-set-key (kbd "M-z") '(lambda () (interactive) (kill-ring-save (line-beginning-position) (line-end-position))))
-
 ;; Make Directory
 (defun my-make-dir ()
   "My Make directory"
@@ -61,7 +58,8 @@
 (eval-after-load 'c++-mode '(define-key c++-mode-map (kbd "C-c m") 'my-make-dir))
 
 ;; Interactive Shell
-(setq shell-command-switch "-c") ; Disable this for mac os
+(setq shell-command-switch "-c") ; Disable this for mac operating system
+(define-key comint-mode-map (kbd "C-l") 'comint-clear-buffer)
 
 ;; Keyboard macros
 ;; Document Ruby Class
@@ -91,3 +89,10 @@
 
 ;; Switch Buffers
 (global-set-key (kbd "s-b") 'counsel-switch-buffer)
+
+;; Yes No alias
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+(provide 'my-custom)
+
+;;; my-custom package ends here

@@ -10,6 +10,8 @@
   :init
   (setq-default indent-tabs-mode nil)
   :config
+  (define-key python-mode-map (kbd "C-t") 'run-python)
+  (define-key inferior-python-mode-map (kbd "C-t") (kbd "C-x 0"))
   (setq python-indent-offset 4))
 
 (use-package jedi
@@ -54,6 +56,12 @@
 
   :bind (:map elpy-mode-map ([remap elpy-goto-definition] .
                              ha/elpy-goto-definition)))
+
+(use-package live-py-mode 
+  :init
+  :ensure t
+  :config
+  )
 
 (provide 'my-python)
 

@@ -10,29 +10,30 @@
 #+end_src
 * Ivy Mode
 #+begin_src elisp
-;; Ivy Mode
-(use-package ivy
-  :delight ivy-mode
-  :ensure t
-  :demand t
-  :config (progn
-	    (ivy-mode 1)
-            (setq ivy-height 30)
-	    (setq ivy-use-virtual-buffers t)
-	    (setq ivy-count-format "(%d/%d) ")
-            (setq ivy-extra-directories ()))
-  :bind (("C-c C-r" . ivy-resume)))
+  ;; Ivy Mode
+  (use-package ivy
+    :delight ivy-mode
+    :ensure t
+    :demand t
+    :config (progn
+              (ivy-mode 1)
+              (setq ivy-height 30)
+              (setq ivy-fixed-height-minibuffer 30)
+              (setq ivy-use-virtual-buffers t)
+              (setq ivy-count-format "(%d/%d) ")
+              (setq ivy-extra-directories ()))
+    :bind (("C-c C-r" . ivy-resume)))
 
-  (setq ivy-re-builders-alist
-  '((read-file-name-internal . ivy--regex-ignore-order)
-  (counsel-M-x . ivy--regex-ignore-order)
-  (counsel-projectile-find-file . ivy--regex-ignore-order)
-  (ivy-switch-buffer . ivy--regex-ignore-order)
-  (projectile-completing-read . ivy--regex-ignore-order)
-  (t . ivy--regex-ignore-order)))
-  ;; Views
-  (global-set-key (kbd "C-c v") 'ivy-push-view)
-  (global-set-key (kbd "C-c V") 'ivy-pop-view)
+    (setq ivy-re-builders-alist
+    '((read-file-name-internal . ivy--regex-ignore-order)
+    (counsel-M-x . ivy--regex-ignore-order)
+    (counsel-projectile-find-file . ivy--regex-ignore-order)
+    (ivy-switch-buffer . ivy--regex-ignore-order)
+    (projectile-completing-read . ivy--regex-ignore-order)
+    (t . ivy--regex-ignore-order)))
+    ;; Views
+    (global-set-key (kbd "C-c v") 'ivy-push-view)
+    (global-set-key (kbd "C-c V") 'ivy-pop-view)
 
 #+end_src
 * Counsel
@@ -56,7 +57,7 @@
            ("s-f" . counsel-projectile-find-file)
            ;("C-c g" . counsel-git)
            ;("C-c j" . counsel-git-grep)
-           ("s-g" . counsel-ag)
+           ("s-;" . counsel-ag)
            ;("C-x l" . counsel-locate)
            ;("C-<tab>" . counsel-company)
            )

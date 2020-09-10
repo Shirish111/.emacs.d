@@ -17,7 +17,7 @@
 (use-package my-hydra)
 ;(use-package my-neotree)
 (use-package my-treemacs)
-(use-package my-eshell)
+(use-package my-shell)
 (add-to-list 'load-path "~/my-emacs/scripts/emacs_custom")
 ;(use-package my-dashboard)
 (use-package my-personal)

@@ -10,14 +10,16 @@
 #+end_src
 * Python
 #+begin_src elisp
-(use-package python
-  :mode ("\\.py\\'" . python-mode)
-        ("\\.wsgi$" . python-mode)
-  :interpreter ("python" . python-mode)
-  :init
-  (setq-default indent-tabs-mode nil)
-  :config
-  (setq python-indent-offset 4))
+  (use-package python
+    :mode ("\\.py\\'" . python-mode)
+          ("\\.wsgi$" . python-mode)
+    :interpreter ("python" . python-mode)
+    :init
+    (setq-default indent-tabs-mode nil)
+    :config
+    (define-key python-mode-map (kbd "C-t") 'run-python)
+    (define-key inferior-python-mode-map (kbd "C-t") (kbd "C-x 0"))
+    (setq python-indent-offset 4))
 #+end_src
 * Jedi
 #+begin_src elisp
@@ -68,6 +70,15 @@
   :bind (:map elpy-mode-map ([remap elpy-goto-definition] .
                              ha/elpy-goto-definition)))
 #+end_src
+* Live Python mode
+  #+begin_src elisp
+    (use-package live-py-mode 
+      :init
+      :ensure t
+      :config
+      )
+  #+end_src
+
 * Package End
 #+begin_src elisp
 (provide 'my-python)

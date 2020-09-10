@@ -9,10 +9,11 @@
   :ensure t
   :demand t
   :config (progn
-	    (ivy-mode 1)
+            (ivy-mode 1)
             (setq ivy-height 30)
-	    (setq ivy-use-virtual-buffers t)
-	    (setq ivy-count-format "(%d/%d) ")
+            (setq ivy-fixed-height-minibuffer 30)
+            (setq ivy-use-virtual-buffers t)
+            (setq ivy-count-format "(%d/%d) ")
             (setq ivy-extra-directories ()))
   :bind (("C-c C-r" . ivy-resume)))
 
@@ -46,7 +47,7 @@
          ("s-f" . counsel-projectile-find-file)
          ;("C-c g" . counsel-git)
          ;("C-c j" . counsel-git-grep)
-         ("s-g" . counsel-ag)
+         ("s-;" . counsel-ag)
          ;("C-x l" . counsel-locate)
          ;("C-<tab>" . counsel-company)
          )

@@ -1,0 +1,156 @@
+#+TITLE: Shell
+#+AUTHOR: Shirishkumar Togarla
+#+PROPERTY: header-args :tangle (f-expand (concat (f-base (buffer-file-name)) ".el") "../src")
+* Package Initialization
+#+begin_src elisp
+;;; my-shell.el --- Configuration to be loaded while starting emacs
+;;; Commentary
+;; The `my-shell' package is used to load the required configuration
+#+end_src
+* Sane term
+#+begin_src elisp :tangle no
+(use-package sane-term
+  :ensure t)
+#+end_src
+* Term
+#+begin_src elisp
+  (use-package term
+    :init
+    :ensure t
+    :config
+    (setq my-prompt-regexp "→ \\|> ")
+    (define-key term-mode-map (kbd "C-<up>") 'term-previous-input)
+    (define-key term-mode-map (kbd "C-<down>") 'term-next-input)
+    (define-key term-mode-map (kbd "C-a") (lambda ()
+                                            (interactive)
+                                            (beginning-of-line)
+                                            (re-search-forward my-prompt-regexp (line-end-position) t)))
+    (define-key term-raw-map (kbd "s-j") 'term-line-mode)
+    (define-key term-mode-map (kbd "s-j") 'term-char-mode)
+    (define-key term-mode-map (kbd "C-l") 'term-send-raw)
+    (define-key term-mode-map (kbd "C-c C-k") 'term-kill-subjob)
+    )
+#+end_src
+
+* Vterm
+  C-based terminal emulator
+#+begin_src elisp
+    ;; Vterm
+    (use-package vterm
+      :bind ("s-t" . vterm-toggle)
+      :demand t
+      :ensure t
+  )
+#+end_src
+* Shx
+  Better shell
+#+begin_src elisp
+  (use-package shx
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Bash Aliases
+#+begin_src elisp :tangle no
+;; Bash Aliases
+;; (use-package load-bash-alias
+;;   :ensure t
+;;   :config
+;;   (setq load-bash-alias-bashrc-file "/home/shirish/.bash_it/aliases/custom.aliases.bash"))
+#+end_src
+* Xterm Color
+#+begin_src elisp :tangle no
+  (use-package xterm-color
+    :init
+    :ensure t
+    :config
+    )
+#+end_src
+* Set up the Correct Path
+#+begin_src elisp :tangle no
+;; Set up the Correct Path
+;; (setenv "PATH"
+;;         (concat
+;;          "/usr/local/bin:/usr/local/sbin:"
+;;          (getenv "PATH")))
+#+end_src
+* Pager Setup
+#+begin_src elisp :tangle no
+;; Pager Setup
+(setenv "PAGER" "cat")
+
+#+end_src
+* Eshell
+* Eshell prompt function
+#+begin_src elisp :tangle no
+;; (setq eshell-prompt-function
+;;   (lambda ()
+;;     (concat (user-login-name) (s-replace "Directory " " " (pwd))
+;;       (if (= (user-uid) 0) " # " " \n$ "))))
+#+end_src
+** esh-help
+ #+begin_src elisp :tangle no
+ (use-package esh-help
+   :ensure t
+   :config
+   (setup-esh-help-eldoc))
+ #+end_src
+** eshell-git-prompt
+ #+begin_src elisp :tangle no
+ (use-package eshell-git-prompt
+   :ensure t
+   :config
+   (eshell-git-prompt-use-theme 'powerline)
+   )
+ #+end_src
+** eshell-fringe-status
+ #+begin_src elisp :tangle no
+ (use-package eshell-fringe-status
+   :ensure t
+   :config
+   :init
+   (add-hook 'eshell-mode-hook 'eshell-fringe-status-mode)
+   )
+
+ #+end_src
+** eshell-did-you-mean
+ #+begin_src elisp :tangle no
+ (use-package eshell-did-you-mean
+   :init ()
+   (add-hook 'eshell-mode-hook 'eshell-did-you-mean-setup)
+   :ensure t
+   )
+
+ #+end_src
+** eshell-z
+ #+begin_src elisp :tangle no
+ (use-package eshell-z
+   :ensure t
+   :demand t
+   )
+
+ #+end_src
+** eshell-prompt-function
+ #+begin_src elisp :tangle no
+ (setq eshell-prompt-function
+       (lambda ()
+               "A simple prompt."
+               (concat
+                (propertize (concat "shirish@ ") 'face `(:foreground "orange"))
+                (propertize (concat (eshell/pwd) "$: ") 'face `(:foreground "orange"))
+               )))
+ #+end_src
+* crontab-e
+#+begin_src elisp :tangle no
+(defun crontab-e ()
+    "Run `crontab -e' in a emacs buffer."
+    (interactive)
+    (with-editor-async-shell-command "crontab -e"))
+#+end_src
+* Package End
+#+begin_src elisp
+(provide 'my-shell)
+
+;;; my-shell package ends here
+#+end_src

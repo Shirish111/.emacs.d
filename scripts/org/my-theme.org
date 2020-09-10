@@ -120,6 +120,26 @@
 ;;     (kaolin-treemacs-theme)
 ;;   )
 #+end_src
+* centaur-tabs
+#+begin_src elisp :tangle no
+  ;; centaur-tabs
+  (use-package centaur-tabs
+    :ensure t
+    :demand
+    :config
+    (centaur-tabs-mode nil)
+    (centaur-tabs-headline-match)
+    (setq centaur-tabs-height 42)
+    (setq centaur-tabs-set-icons t)
+    (setq centaur-tabs-set-bar 'under)
+    (setq x-underline-at-descent-line t)
+    (centaur-tabs-change-fonts "arial" 160)
+    (centaur-tabs-group-by-projectile-project)
+    :bind
+    ("C-<prior>" . centaur-tabs-backward)
+    ("C-<next>" . centaur-tabs-forward))
+#+end_src
+
 * Package End
 #+begin_src elisp
 (provide 'my-theme)

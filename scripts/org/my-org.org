@@ -107,12 +107,41 @@
   ;;   ;;(setq org-journal-dir "/path/to/org-journal/")
   ;;   (setq org-journal-date-format "%A, %d %B %Y"))
 #+end_src
+* Org Reveal
+  #+begin_src elisp
+    (use-package ox-reveal
+      :init
+      :ensure t
+      :config
+      (setq org-reveal-title-slide nil)
+      )
+  #+end_src
+
+* Org noter
+  #+begin_src elisp :tangle no
+    (use-package org-noter
+      :init
+      :ensure t
+      :config
+      )
+  #+end_src
+* Org Tree slide
+  #+begin_src elisp
+    (use-package org-tree-slide
+      :init
+      :ensure t
+      :config
+      )
+  #+end_src
+
+
 * Tangle All Source Blocks
 #+begin_src elisp
   ;; Tangle All Source Blocks
   (defun my-tangle-emacs-config()
     (interactive)
     (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/org" "org"))
+    (mapc 'org-babel-tangle-file (directory-files-recursively "~/my-emacs/scripts/emacs_custom" "org"))
   )
 #+end_src
 * Skip footer

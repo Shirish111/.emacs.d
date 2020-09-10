@@ -62,8 +62,8 @@
 (use-package which-key
   :ensure t
   :demand t
-  :delight
-  :config(which-key-mode 1))
+  :delight)
+  ;;:config(which-key-mode 1))
 #+end_src
 * Smartparens
 #+begin_src elisp
@@ -177,11 +177,14 @@
 * Magit
   For git UI
 #+begin_src elisp
-  ;; Magit
-  (use-package magit
-    :ensure t
-    :delight
-    :bind (("C-x g" . magit-status)))
+    ;; Magit
+    (use-package magit
+      :ensure t
+      :delight
+      :bind (("C-x g" . magit-status))
+      :config
+      (setq magit-status-)
+  )
 #+end_src
 * Forge
   For Github integration with magit
@@ -234,7 +237,8 @@
     :init
     (setq projectile-completion-system 'ivy)
     :config
-    (define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+    ;;(define-key projectile-mode-map (kbd "M-p") 'projectile-command-map)
+    (global-set-key (kbd "C-f") 'find-file)
     (projectile-mode +1))
 
 #+end_src
@@ -391,14 +395,6 @@
   ;; Inhibit Startup Screen
   (setq inhibit-startup-message t)
 #+end_src
-* Vterm
-  C-based terminal emulator
-#+begin_src elisp
-  ;; Vterm
-  (use-package vterm
-    :demand t
-    :ensure t)
-#+end_src
 * Dumb Jump
   Jump between code
 #+begin_src elisp
@@ -550,15 +546,6 @@
     :config
     )
 #+end_src
-* Shx
-  Better shell
-#+begin_src elisp
-  (use-package shx
-    :init
-    :ensure t
-    :config
-    )
-#+end_src
 * Visual-Regexp-Steroids
   Visulaize replace with regexp on the fly
 #+begin_src elisp
@@ -613,7 +600,7 @@
 #+end_src
 * Vdiff
   vimdiff for emacs
-#+begin_src elisp
+#+begin_src elisp :tangle no
   (use-package vdiff
     :init
     :ensure t
@@ -621,6 +608,15 @@
     (define-key vdiff-mode-map (kbd "C-c") vdiff-mode-prefix-map)
     )
 #+end_src
+* EasyPG
+  #+begin_src elisp
+    (use-package epa-file
+      :init
+      :config
+      (epa-file-enable)
+      )
+  #+end_src
+
 * Package End
 #+begin_src elisp
 (provide 'my-common)

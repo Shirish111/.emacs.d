@@ -22,9 +22,6 @@
   (setq dashboard-set-footer nil)
   (setq dashboard-center-content nil))
 
-
-
 (provide 'my-dashboard)
 
 ;;; my-dashboard package ends here
-

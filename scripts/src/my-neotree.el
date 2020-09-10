@@ -31,4 +31,3 @@
 (provide 'my-neotree)
 
 ;;; my-neotree package ends here
-
